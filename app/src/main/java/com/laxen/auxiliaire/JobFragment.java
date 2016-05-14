@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by laxen on 5/14/16.
  */
@@ -33,20 +35,17 @@ public class JobFragment extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.fragment_job, container, false);
 
-        String username = "";
+        initUI(view);
 
         if (savedInstanceState != null) {
-            username = savedInstanceState.getString("userid");
+            nameText.setText(savedInstanceState.getString("nameText"));
+            titleText.setText(savedInstanceState.getString("titleText"));
+            jobTypeText.setText(savedInstanceState.getString("jobTypeText"));
+            priceText.setText(savedInstanceState.getString("priceText"));
+            positionText.setText(savedInstanceState.getString("positionText"));
         }
 
-        titleText = (TextView) view.findViewById(R.id.helpTitle);
-        titleText.setText(username);
 
-        nameText = (TextView) view.findViewById(R.id.nameText);
-        nameText.setText("TEster");
-
-
-        initUI(view);
 
         return view;
     }
@@ -55,8 +54,11 @@ public class JobFragment extends Fragment implements View.OnClickListener {
         acceptButton = (Button) view.findViewById(R.id.acceptbtn);
         acceptButton.setOnClickListener(this);
 
+        nameText = (TextView) view.findViewById(R.id.nameText);
+        titleText = (TextView) view.findViewById(R.id.helpTitle);
         jobTypeText = (TextView) view.findViewById(R.id.jobTypeText);
         priceText = (TextView) view.findViewById(R.id.priceText);
+        positionText = (TextView) view.findViewById(R.id.positionText);
 
 
         fillTextFields();

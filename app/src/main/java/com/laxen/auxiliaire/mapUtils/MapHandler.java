@@ -82,7 +82,20 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         // resets the fragment
         JobFragment jobFragment = new JobFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("userid", markerJobMap.get(marker).getUsername());
+        bundle.putString("nameText", markerJobMap.get(marker).getUsername());
+        bundle.putString("titleText", markerJobMap.get(marker).getTitle());
+        bundle.putString("jobTypeText", markerJobMap.get(marker).getJobtype());
+        bundle.putString("priceText", markerJobMap.get(marker).getPrice()+"");
+        // bundle.putString("positionText", markerJobMap.get(marker).()); TODO SOVE
+
+        /*
+
+            nameText.setText(savedInstanceState.getString("nameText"));
+            titleText.setText(savedInstanceState.getString("titleText"));
+            jobTypeText.setText(savedInstanceState.getString("jobTypeText"));
+            priceText.setText(savedInstanceState.getString("priceText"));
+            positionText.setText(savedInstanceState.getString("positionText"));
+         */
         jobFragment.setArguments(bundle);
 
         transaction = context.getSupportFragmentManager().beginTransaction();
