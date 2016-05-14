@@ -65,7 +65,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.vTitle.setText(job.getTitle());
 
         String vDateString = "";
-        Date createDate = job.getDate();
+        Date createDate = job.getCreated_at();
         if(DateUtils.isToday(createDate.getTime())){
             android.text.format.DateFormat df = new android.text.format.DateFormat();
             vDateString = df.format("HH:mm", new java.util.Date()).toString();

@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.laxen.auxiliaire.models.Job;
+
 /**
  * Created by laxen on 5/14/16.
  */
