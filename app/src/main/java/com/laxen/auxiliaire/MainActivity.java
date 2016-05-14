@@ -77,23 +77,7 @@ public class MainActivity extends AppCompatActivity
 
         initToolBar();
 
-        LocationResolver.LocationResult locationResult = new LocationResolver.LocationResult() {
-            @Override
-            public void gotLocation(Location location) {
-                if (location == null) {
-                    Toast msg = Toast.makeText(MainActivity.this, "No position found", Toast.LENGTH_SHORT);
-                    msg.show();
-                    return;
-                }
-                LatLng myLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-                mapHandler.zoomLocation(myLatLng);
-            }
-        };
-        LocationResolver myLocation = new LocationResolver();
-        if (!myLocation.getLocation(this, locationResult)) {
-            Toast msg = Toast.makeText(this, "Please enable GPS and Network", Toast.LENGTH_SHORT);
-            msg.show();
-        }
+
         //VolleyHelper.getInstance(getApplicationContext()).addToRequestQueue(gsonRequest);
 
         // TODO REMOVE
@@ -218,6 +202,24 @@ public class MainActivity extends AppCompatActivity
         LatLng SWEDEN = new LatLng(62.2315, 16.1932);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SWEDEN, 4.5f));
 
+
+        LocationResolver.LocationResult locationResult = new LocationResolver.LocationResult() {
+            @Override
+            public void gotLocation(Location location) {
+                if (location == null) {
+                    Toast msg = Toast.makeText(MainActivity.this, "No position found", Toast.LENGTH_SHORT);
+                    msg.show();
+                    return;
+                }
+                LatLng myLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                mapHandler.zoomLocation(myLatLng);
+            }
+        };
+        LocationResolver myLocation = new LocationResolver();
+        if (!myLocation.getLocation(this, locationResult)) {
+            Toast msg = Toast.makeText(this, "Please enable GPS and Network", Toast.LENGTH_SHORT);
+            msg.show();
+        }
 
         fetchData();
     }
