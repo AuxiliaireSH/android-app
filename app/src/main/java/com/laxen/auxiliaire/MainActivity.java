@@ -39,6 +39,10 @@ public class MainActivity extends AppCompatActivity
     String tabNames[] = {"List", "Map", "My Jobs", "Profile"};
     MapFragment mMapFragment;
 
+    public SlidingTabLayout getTabs () {
+        return tabs;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +74,6 @@ public class MainActivity extends AppCompatActivity
 
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
-
         // tabs for list and map
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
         tabs.setCustomTabView(R.layout.custom_tab, 0);

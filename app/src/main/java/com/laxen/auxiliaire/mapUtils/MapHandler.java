@@ -57,7 +57,7 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         transaction.add(R.id.appContainer, jobFragment).addToBackStack("jobFrag");
         transaction.commit();
 
-        context.getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        context.getTabs().removeAllViews();
         return false;
     }
 
