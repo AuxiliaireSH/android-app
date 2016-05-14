@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity
 
         jobModel = new JobsModel();
         jobFragment = new JobFragment();
-        
+
         initToolBar();
 
         VolleyHelper.getInstance(getApplicationContext()).addToRequestQueue(gsonRequest);
@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity
     public void popFragment() {
         getSupportFragmentManager().popBackStack();
     }
-    
+
     final GsonRequest gsonRequest = new GsonRequest(url, Job[].class, null, new Response.Listener<Job[]>() {
 
         @Override

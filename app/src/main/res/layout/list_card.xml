@@ -37,11 +37,63 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Title"
                 android:textSize="24sp"
                 android:padding="8dp"
                 android:layout_alignBottom="@id/cardBackground"
                 android:textColor="@color/white"/>
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_below="@id/cardBackground"
+                android:padding="8dp"
+                android:divider="@drawable/divider"
+                android:dividerPadding="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:padding="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_description_black_24dp"/>
+
+                    <TextView
+                        android:layout_gravity="top"
+                        android:id="@+id/description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="A long fakking description of the job. Loorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumrem fakking ipsum"
+                        android:textSize="14sp"
+                        android:layout_alignBottom="@id/cardBackground"
+                        android:textColor="@color/textColor"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:padding="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_monetization_on_black_24dp"/>
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12 sek"
+                        android:textSize="20sp"
+                        android:textColor="@color/textColor"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_alignParentBottom="true"
@@ -59,6 +111,7 @@
                     android:paddingBottom="2dp"
                     android:paddingEnd="4dp"
                     android:id="@+id/tvDate"
+                    android:text="Yesterday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/fadeTextColor" />
