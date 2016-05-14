@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.laxen.auxiliaire.models.Job;
 
@@ -78,6 +79,8 @@ public class JobFragment extends Fragment implements View.OnClickListener {
         // Todo accept job
         ((MainActivity) getContext()).popFragment();
         ((MainActivity) getContext()).initToolBar();
+        Toast msg = Toast.makeText(getContext(), "Job accepted!", Toast.LENGTH_SHORT);
+        msg.show();
     }
 
     public void setUserID(int userID) {
