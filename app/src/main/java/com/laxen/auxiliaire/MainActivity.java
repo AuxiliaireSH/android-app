@@ -230,10 +230,9 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onResponse(Job[] jobs) {
             jobsModel.setJobs(Arrays.asList(jobs));
-            Log.d("jobtype", jobs[0].toString());
             MainActivity.this.mapHandler.populateMap();
+            adapter.getListFragment().populuateList();
             Toast.makeText(MainActivity.this, "Jobs refreshed", Toast.LENGTH_SHORT).show();
-
         }
     }, new Response.ErrorListener() {
         @Override

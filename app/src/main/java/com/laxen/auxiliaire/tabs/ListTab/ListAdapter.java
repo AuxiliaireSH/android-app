@@ -3,6 +3,7 @@ package com.laxen.auxiliaire.tabs.ListTab;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,14 +71,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         String vDateString = "";
         Date createDate = job.getCreated_at();
+        Log.d("CreatedAt", createDate.toString());
         if(DateUtils.isToday(createDate.getTime())){
             android.text.format.DateFormat df = new android.text.format.DateFormat();
-            vDateString = df.format("HH:mm", new java.util.Date()).toString();
+            vDateString = df.format("HH:mm", createDate).toString();
         } else if(isYesterday(createDate)){
             vDateString = "yesterday";
         } else {
             android.text.format.DateFormat df = new android.text.format.DateFormat();
-            vDateString = df.format("dd MMM", new java.util.Date()).toString();
+            vDateString = df.format("dd MMM", createDate).toString();
         }
         holder.vDate.setText(vDateString);
 

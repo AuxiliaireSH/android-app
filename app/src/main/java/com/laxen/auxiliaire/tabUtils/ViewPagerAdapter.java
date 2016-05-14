@@ -123,4 +123,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
     public int getCount() {
         return NumbOfTabs;
     }
+
+    public ListFragment getListFragment() {
+        return listFragment;
+    }
 }

@@ -46,7 +46,6 @@ public class ListFragment extends Fragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getContext(), "Updating list", Toast.LENGTH_SHORT).show();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -56,7 +55,6 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity)getContext()).popFragment();
-
 
                 ((MainActivity)getContext()).addFragment = new AddFragment();
 
@@ -77,15 +75,19 @@ public class ListFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new ListAdapter(jobsModel.getJobs());
+        mAdapter = new ListAdapter(new JobsModel().getJobs());
         mRecyclerView.setAdapter(mAdapter);
-
-
 
         return view;
     }
 
     public void setJobsModel(JobsModel jobsModel) {
         this.jobsModel = jobsModel;
+    }
+
+    public void populuateList() {
+        mAdapter = new ListAdapter(jobsModel.getJobs());
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 }
