@@ -61,7 +61,7 @@ public class ListFragment extends Fragment {
 
                 transaction = ((MainActivity)getContext()).getSupportFragmentManager().beginTransaction();
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                transaction.add(R.id.appContainer, ((MainActivity)getContext()).addFragment).addToBackStack("addFrag");
+                transaction.add(R.id.fragmentcontainer, ((MainActivity)getContext()).addFragment).addToBackStack("addFrag");
                 transaction.commit();
             }
         });

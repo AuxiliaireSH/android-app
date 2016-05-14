@@ -34,7 +34,6 @@
             android:id="@+id/fabButton"
             android:layout_gravity="right|bottom" />
 
-
     </FrameLayout>
 
 </RelativeLayout>
