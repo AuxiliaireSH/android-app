@@ -7,4 +7,5 @@
     <color name="colorRecyclerViewBackground">#fafafa</color>
     <color name="white">#ffffff</color>
     <color name="textColor">#424242</color>
+    <color name="fadeTextColor">#A2A2A2</color>
 </resources>
