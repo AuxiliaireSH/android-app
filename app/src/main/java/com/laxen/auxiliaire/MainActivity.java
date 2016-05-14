@@ -34,6 +34,11 @@ public class MainActivity extends AppCompatActivity
     private GoogleMap mMap;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
+    // Toolbar toolbar;
+    ViewPagerAdapter adapter;
+    SlidingTabLayout tabs;
+    ViewPager pager;
+    String tabNames[] = {"List", "Map", "My Jobs", "Profile"};
     MapFragment mMapFragment;
 
     @Override
@@ -41,6 +46,48 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initToolBar();
+    }
+
+    // inits the toolbar, actionbar and tabs
+    public void initToolBar() {
+
+        // probably not needed
+        // toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        // setSupportActionBar(toolbar);
+
+        // removes shadow of actionbar
+        getSupportActionBar().setElevation(0);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.aux);
+
+
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabNames, 4);
+        adapter.setContext(this);
+
+        // creates fragments in adapter
+        adapter.initFragments(this);
+
+        pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(adapter);
+
+        // tabs for list and map
+        tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        tabs.setCustomTabView(R.layout.custom_tab, 0);
+        // evens out the space between the tabs
+        tabs.setDistributeEvenly(true);
+        // Setting the ViewPager For the SlidingTabsLayout
+        tabs.setViewPager(pager);
+
+        // colors the scroller
+        tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+            @Override
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.colorTab);
+            }
+        });
     }
 
 
@@ -65,6 +112,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        // int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        /*if (id == R.id.action_settings) {
+            return true;
+        }*/
+
         return super.onOptionsItemSelected(item);
     }
 
