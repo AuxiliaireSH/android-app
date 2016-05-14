@@ -13,17 +13,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 import com.laxen.auxiliaire.AddFragment;
-import com.laxen.auxiliaire.Job;
-import com.laxen.auxiliaire.JobFragment;
 import com.laxen.auxiliaire.MainActivity;
 import com.laxen.auxiliaire.R;
+import com.laxen.auxiliaire.models.JobsModel;
 
-import java.util.ArrayList;
-import java.util.Date;
 
 public class ListFragment extends Fragment {
 
+    private JobsModel jobsModel;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -78,16 +77,15 @@ public class ListFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
-        ArrayList<Job> jobList = new ArrayList<>();
-        jobList.add(new Job(1, "User", 500, "Plumber", 43.421421, 44.21321, new Date(), "This is the descriptions of the job", "Wash my car"));
-        jobList.add(new Job(2, "User", 500, "Plumber", 43.421421, 44.21321, new Date(), "This is the descriptions of the job", "Shitters Clogged"));
-        jobList.add(new Job(3, "User", 500, "Plumber", 43.421421, 44.21321, new Date(), "This is the descriptions of the job", "Shitters Clogged"));
-        jobList.add(new Job(4, "User", 500, "Plumber", 43.421421, 44.21321, new Date(), "This is the descriptions of the job", "Shitters Clogged"));
-        mAdapter = new ListAdapter(jobList);
+        mAdapter = new ListAdapter(jobsModel.getJobs());
         mRecyclerView.setAdapter(mAdapter);
+
+
 
         return view;
     }
 
+    public void setJobsModel(JobsModel jobsModel) {
+        this.jobsModel = jobsModel;
+    }
 }

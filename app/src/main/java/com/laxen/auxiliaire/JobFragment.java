@@ -1,16 +1,14 @@
 package com.laxen.auxiliaire;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.laxen.auxiliaire.models.Job;
 
 /**
  * Created by laxen on 5/14/16.
@@ -52,7 +50,7 @@ public class JobFragment extends Fragment implements View.OnClickListener {
         if(((MainActivity)getContext()).currentJob != null) {
             nameText.setText(((MainActivity)getContext()).currentJob.getUsername());
             titleText.setText(((MainActivity)getContext()).currentJob.getTitle());
-            jobTypeText.setText(((MainActivity)getContext()).currentJob.getJobtype());
+            jobTypeText.setText(((MainActivity)getContext()).currentJob.getKind());
             priceText.setText(((MainActivity)getContext()).currentJob.getPrice()+"");
         }
 

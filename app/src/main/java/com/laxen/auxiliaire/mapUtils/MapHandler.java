@@ -1,8 +1,5 @@
 package com.laxen.auxiliaire.mapUtils;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
@@ -10,9 +7,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.laxen.auxiliaire.Job;
+import com.laxen.auxiliaire.models.Job;
 import com.laxen.auxiliaire.JobFragment;
-import com.laxen.auxiliaire.JobsModel;
+import com.laxen.auxiliaire.models.JobsModel;
 import com.laxen.auxiliaire.MainActivity;
 import com.laxen.auxiliaire.R;
 
@@ -40,25 +37,25 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
     public void populateMap () {
         Job job1 = new Job();
         job1.setTitle("Help me with my bike!");
-        job1.setLat(51.5074);
-        job1.setLon(0.1278);
+        job1.setLatitude(51.5074);
+        job1.setLongitude(0.1278);
         job1.setPrice(300);
-        job1.setJobtype("Biking");
+        job1.setKind("Biking");
         job1.setUsername("Johan Andersson");
 
         Job job2 = new Job();
         job2.setTitle("IKEA is tricky");
-        job2.setLat(40.7128);
-        job2.setLon(74.0059);
+        job2.setLatitude(40.7128);
+        job2.setLongitude(74.0059);
         job2.setPrice(100);
-        job1.setJobtype("Furniture");
+        job1.setKind("Furniture");
         job2.setUsername("David Göransson");
 
         jobModel.getJobs().add(job1);
         jobModel.getJobs().add(job2);
 
         for (Job job : jobModel.getJobs()) {
-            LatLng point = new LatLng(job.getLat(), job.getLon());
+            LatLng point = new LatLng(job.getLatitude(), job.getLongitude());
 
             Marker m = map.addMarker(new MarkerOptions().position(point).title(job.getTitle()));
             markerJobMap.put(m, job);
@@ -88,7 +85,7 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         context.currentJob = new Job();
         context.currentJob.setUsername(markerJobMap.get(marker).getUsername());
         context.currentJob.setTitle(markerJobMap.get(marker).getTitle());
-        context.currentJob.setJobtype(markerJobMap.get(marker).getJobtype());
+        context.currentJob.setKind(markerJobMap.get(marker).getKind());
         context.currentJob.setPrice(markerJobMap.get(marker).getPrice());
         context.jobFragment = new JobFragment();
 

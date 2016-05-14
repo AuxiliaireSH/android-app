@@ -1,4 +1,4 @@
-package com.laxen.auxiliaire;
+package com.laxen.auxiliaire.models;
 
 import java.util.ArrayList;
 import java.util.List;

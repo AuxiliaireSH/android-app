@@ -19,6 +19,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.laxen.auxiliaire.mapUtils.MapHandler;
+import com.laxen.auxiliaire.models.Job;
+import com.laxen.auxiliaire.models.JobsModel;
 import com.laxen.auxiliaire.tabUtils.SlidingTabLayout;
 import com.laxen.auxiliaire.tabUtils.ViewPagerAdapter;
 import com.laxen.auxiliaire.tabs.MapFragmentTab;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     private MapHandler mapHandler;
-    private JobsModel jobModel;
+    private JobsModel jobsModel;
     public JobFragment jobFragment;
     public AddFragment addFragment;
 
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        jobModel = new JobsModel();
+        jobsModel = new JobsModel();
         jobFragment = new JobFragment();
 
         initToolBar();
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setIcon(R.mipmap.aux);
 
 
-        adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabNames, 4);
+        adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabNames, 4, jobsModel);
         adapter.setContext(this);
 
         // creates fragments in adapter
@@ -182,7 +184,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mapHandler = new MapHandler(mMap, this, jobModel);
+        mapHandler = new MapHandler(mMap, this, jobsModel);
 
         mMap.setOnMyLocationButtonClickListener(this);
         //enableMyLocation(); TODO ENABLE THIS WHEN NOT DEBUGGING
@@ -224,7 +226,9 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public void onResponse(Job[] jobs) {
-            jobModel.setJobs(Arrays.asList(jobs));
+            jobsModel.setJobs(Arrays.asList(jobs));
+            Log.d("jobtype", jobs[0].toString());
+
         }
     }, new Response.ErrorListener() {
         @Override

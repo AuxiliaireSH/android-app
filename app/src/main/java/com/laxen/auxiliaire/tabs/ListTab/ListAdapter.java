@@ -1,6 +1,5 @@
 package com.laxen.auxiliaire.tabs.ListTab;
 
-import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -9,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.laxen.auxiliaire.Job;
+import com.laxen.auxiliaire.models.Job;
 import com.laxen.auxiliaire.R;
 
 import java.text.DateFormat;

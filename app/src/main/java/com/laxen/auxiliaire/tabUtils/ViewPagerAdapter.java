@@ -10,6 +10,7 @@ import android.text.style.ImageSpan;
 
 import com.laxen.auxiliaire.MainActivity;
 import com.laxen.auxiliaire.R;
+import com.laxen.auxiliaire.models.JobsModel;
 import com.laxen.auxiliaire.tabs.JobsFragment;
 import com.laxen.auxiliaire.tabs.ListTab.ListFragment;
 import com.laxen.auxiliaire.tabs.MapFragmentTab;
@@ -19,6 +20,8 @@ import com.laxen.auxiliaire.tabs.ProfileFragment;
  * Created by hp1 on 21-01-2015.
  */
 public class ViewPagerAdapter extends FragmentStatePagerAdapter{
+
+    private final JobsModel jobs;
 
     // Fragments
     ListFragment listFragment;
@@ -33,10 +36,11 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
 
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
-    public ViewPagerAdapter(FragmentManager fm,CharSequence mTitles[], int mNumbOfTabsumb) {
+    public ViewPagerAdapter(FragmentManager fm, CharSequence mTitles[], int mNumbOfTabsumb, JobsModel jobs) {
         super(fm);
         this.Titles = mTitles;
         this.NumbOfTabs = mNumbOfTabsumb;
+        this.jobs = jobs;
 
     }
 
@@ -51,6 +55,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
 
     public void initListFragment() {
         listFragment = new ListFragment();
+        listFragment.setJobsModel(jobs);
     }
 
     public void initJobsFragment() {
