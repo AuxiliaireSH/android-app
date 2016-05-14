@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity
 
     private MapHandler mapHandler;
     private JobsModel jobModel;
+    public JobFragment jobFragment;
 
-    private Job currentJob;
+    public Job currentJob;
 
     public void setCurrentJob(Job job) {
         this.currentJob = job;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         jobModel = new JobsModel();
+        jobFragment = new JobFragment();
 
         initToolBar();
 

@@ -39,14 +39,20 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
 
     public void populateMap () {
         Job job1 = new Job();
+        job1.setTitle("Help me with my bike!");
         job1.setLat(51.5074);
         job1.setLon(0.1278);
-        job1.setUsername("TRIST");
+        job1.setPrice(300);
+        job1.setJobtype("Biking");
+        job1.setUsername("Johan Andersson");
 
         Job job2 = new Job();
+        job2.setTitle("IKEA is tricky");
         job2.setLat(40.7128);
         job2.setLon(74.0059);
-        job2.setUsername("ROLIGT");
+        job2.setPrice(100);
+        job1.setJobtype("Furniture");
+        job2.setUsername("David Göransson");
 
         jobModel.getJobs().add(job1);
         jobModel.getJobs().add(job2);
@@ -79,29 +85,18 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         Log.d("App", marker.getId());
         context.popFragment();
 
-        // resets the fragment
-        JobFragment jobFragment = new JobFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("nameText", markerJobMap.get(marker).getUsername());
-        bundle.putString("titleText", markerJobMap.get(marker).getTitle());
-        bundle.putString("jobTypeText", markerJobMap.get(marker).getJobtype());
-        bundle.putString("priceText", markerJobMap.get(marker).getPrice()+"");
-        // bundle.putString("positionText", markerJobMap.get(marker).()); TODO SOVE
-
-        /*
-
-            nameText.setText(savedInstanceState.getString("nameText"));
-            titleText.setText(savedInstanceState.getString("titleText"));
-            jobTypeText.setText(savedInstanceState.getString("jobTypeText"));
-            priceText.setText(savedInstanceState.getString("priceText"));
-            positionText.setText(savedInstanceState.getString("positionText"));
-         */
-        jobFragment.setArguments(bundle);
+        context.currentJob = new Job();
+        context.currentJob.setUsername(markerJobMap.get(marker).getUsername());
+        context.currentJob.setTitle(markerJobMap.get(marker).getTitle());
+        context.currentJob.setJobtype(markerJobMap.get(marker).getJobtype());
+        context.currentJob.setPrice(markerJobMap.get(marker).getPrice());
+        context.jobFragment = new JobFragment();
 
         transaction = context.getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        transaction.add(R.id.appContainer, jobFragment).addToBackStack("jobFrag");
+        transaction.add(R.id.appContainer, context.jobFragment).addToBackStack("jobFrag");
         transaction.commit();
+
 
         //context.getSupportActionBar().hide();
         //context.getTabs().removeAllViews();
