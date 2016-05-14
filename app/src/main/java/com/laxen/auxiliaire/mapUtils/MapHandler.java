@@ -1,6 +1,7 @@
 package com.laxen.auxiliaire.mapUtils;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -27,7 +28,7 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
     private MainActivity context;
     private FragmentTransaction transaction;
     private JobsModel jobModel;
-    private Map<Marker, Job> markerJobMap = new HashMap<>();
+    public Map<Marker, Job> markerJobMap = new HashMap<Marker, Job>();
 
     public MapHandler(GoogleMap map, MainActivity context, JobsModel jobModel) {
         this.jobModel = jobModel;
@@ -40,10 +41,12 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         Job job1 = new Job();
         job1.setLat(51.5074);
         job1.setLon(0.1278);
+        job1.setUsername("TRIST");
 
         Job job2 = new Job();
         job2.setLat(40.7128);
         job2.setLon(74.0059);
+        job2.setUsername("ROLIGT");
 
         jobModel.getJobs().add(job1);
         jobModel.getJobs().add(job2);
@@ -53,6 +56,7 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
 
             Marker m = map.addMarker(new MarkerOptions().position(point).title(job.getTitle()));
             markerJobMap.put(m, job);
+            Log.d("app", "ADDED JOB TO MAP");
         }
     }
 
@@ -76,15 +80,17 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         context.popFragment();
 
         // resets the fragment
-        Fragment jobFragment = new JobFragment();
-        ((JobFragment)jobFragment).setCurrentJob(markerJobMap.get(marker));
+        JobFragment jobFragment = new JobFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("userid", markerJobMap.get(marker).getUsername());
+        jobFragment.setArguments(bundle);
 
         transaction = context.getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.add(R.id.appContainer, jobFragment).addToBackStack("jobFrag");
         transaction.commit();
 
-        context.getSupportActionBar().hide();
+        //context.getSupportActionBar().hide();
         //context.getTabs().removeAllViews();
         return false;
     }

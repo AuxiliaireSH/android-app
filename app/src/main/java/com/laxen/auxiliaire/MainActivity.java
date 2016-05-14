@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity
     private MapHandler mapHandler;
     private JobsModel jobModel;
 
+    private Job currentJob;
+
+    public void setCurrentJob(Job job) {
+        this.currentJob = job;
+    }
+
     // Toolbar toolbar;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
@@ -82,7 +88,6 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.aux);
-        getSupportActionBar().show();
 
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabNames, 4);
@@ -93,6 +98,8 @@ public class MainActivity extends AppCompatActivity
 
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
+
+        getSupportActionBar().show();
 
         initSlider();
     }
