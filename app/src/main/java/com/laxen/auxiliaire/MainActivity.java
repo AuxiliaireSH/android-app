@@ -4,13 +4,10 @@ import android.Manifest;
 import android.app.FragmentTransaction;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,12 +32,13 @@ public class MainActivity extends AppCompatActivity
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     private MapHandler mapHandler;
+    private JobsModel jobModel;
 
     // Toolbar toolbar;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
     ViewPager pager;
-    String tabNames[] = {"List", "Map", "My Jobs", "Profile"};
+    String tabNames[] = {"List", "Map", "My JobsModel", "Profile"};
     MapFragment mMapFragment;
 
     public SlidingTabLayout getTabs () {
@@ -51,6 +49,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        jobModel = new JobsModel();
 
         initToolBar();
 
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mapHandler = new MapHandler(mMap, this);
+        mapHandler = new MapHandler(mMap, this, jobModel);
 
         mMap.setOnMyLocationButtonClickListener(this);
         //enableMyLocation(); TODO ENABLE THIS WHEN NOT DEBUGGING

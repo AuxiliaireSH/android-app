@@ -1,10 +1,11 @@
 package com.laxen.auxiliaire;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Jobs {
+public class JobsModel {
 
-	private List<Job> jobs;
+	private List<Job> jobs = new ArrayList<>();
 
 	public List<Job> getJobs() {
 		return jobs;
