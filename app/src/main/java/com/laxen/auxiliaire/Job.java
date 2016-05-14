@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class Job {
 
-	private String userid;
+	private Integer userid;
 	private String username;
 	private Integer price;
 	private String jobtype;
@@ -17,11 +17,22 @@ public class Job {
 	private String description;
 	private String title;
 
-	public String getTitle() {
-		return title;
+	public Job() {
 	}
 
-	public String getUserid() {
+	public Job(Integer userid, String username, Integer price, String jobtype, Double lon, Double lat, Date date, String description, String title) {
+		this.userid = userid;
+		this.username = username;
+		this.price = price;
+		this.jobtype = jobtype;
+		this.lon = lon;
+		this.lat = lat;
+		this.date = date;
+		this.description = description;
+		this.title = title;
+	}
+
+	public Integer getUserid() {
 		return userid;
 	}
 
@@ -53,7 +64,11 @@ public class Job {
 		return description;
 	}
 
-	public void setUserid(String userid) {
+	public String getTitle() {
+		return title;
+	}
+
+	public void setUserid(Integer userid) {
 		this.userid = userid;
 	}
 
@@ -83,5 +98,9 @@ public class Job {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }
