@@ -169,6 +169,7 @@ public class MainActivity extends AppCompatActivity
 
         mMap.setOnMapClickListener(mapHandler);
         mMap.setOnMapLongClickListener(mapHandler);
+        mapHandler.populateMap();
     }
 
 

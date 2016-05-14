@@ -8,6 +8,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.laxen.auxiliaire.Job;
 import com.laxen.auxiliaire.JobFragment;
 import com.laxen.auxiliaire.JobsModel;
 import com.laxen.auxiliaire.MainActivity;
@@ -28,6 +29,14 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         this.context = context;
         this.map = map;
         this.map.setOnMarkerClickListener(this);
+    }
+
+    public void populateMap () {
+        for (Job job : jobModel.getJobs()) {
+            LatLng point = new LatLng(job.getLat(), job.getLon());
+
+            map.addMarker(new MarkerOptions().position(point).title(job.getTitle()));
+        }
     }
 
     @Override

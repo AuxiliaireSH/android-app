@@ -11,10 +11,15 @@ public class Job {
 	private String username;
 	private Integer price;
 	private String jobtype;
-	private Integer lon;
-	private Integer lat;
+	private Double lon;
+	private Double lat;
 	private Date date;
 	private String description;
+	private String title;
+
+	public String getTitle() {
+		return title;
+	}
 
 	public String getUserid() {
 		return userid;
@@ -32,11 +37,11 @@ public class Job {
 		return jobtype;
 	}
 
-	public Integer getLon() {
+	public Double getLon() {
 		return lon;
 	}
 
-	public Integer getLat() {
+	public Double getLat() {
 		return lat;
 	}
 
@@ -64,11 +69,11 @@ public class Job {
 		this.jobtype = jobtype;
 	}
 
-	public void setLon(Integer lon) {
+	public void setLon(Double lon) {
 		this.lon = lon;
 	}
 
-	public void setLat(Integer lat) {
+	public void setLat(Double lat) {
 		this.lat = lat;
 	}
 
