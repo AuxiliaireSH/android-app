@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.widget.Button;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -57,6 +58,7 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         transaction.add(R.id.appContainer, jobFragment).addToBackStack("jobFrag");
         transaction.commit();
 
+        context.getSupportActionBar().hide();
         context.getTabs().removeAllViews();
         return false;
     }
