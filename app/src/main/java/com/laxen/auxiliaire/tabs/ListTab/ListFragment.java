@@ -53,8 +53,6 @@ public class ListFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getContext()).popFragment();
-
                 ((MainActivity)getContext()).addFragment = new AddFragment();
 
                 transaction = ((MainActivity)getContext()).getSupportFragmentManager().beginTransaction();

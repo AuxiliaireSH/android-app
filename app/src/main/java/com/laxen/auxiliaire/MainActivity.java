@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity
 
     public Job currentJob;
 
-    public Boolean isLAXEN false;
+    public Boolean isLAXEN = false;
 
     public void setCurrentJob(Job job) {
         this.currentJob = job;
@@ -214,9 +214,12 @@ public class MainActivity extends AppCompatActivity
                     return;
                 }
                 LatLng myLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-                mapHandler.zoomLocation(myLatLng);
+                if(isLAXEN){
+                    mapHandler.zoomLocation(myLatLng);
+                }
             }
         };
+
         LocationResolver myLocation = new LocationResolver();
         if (!myLocation.getLocation(this, locationResult)) {
             Toast msg = Toast.makeText(this, "Please enable GPS and Network", Toast.LENGTH_SHORT);
