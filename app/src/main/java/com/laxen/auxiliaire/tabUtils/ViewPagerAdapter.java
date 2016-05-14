@@ -11,8 +11,10 @@ import android.text.style.ImageSpan;
 
 import com.laxen.auxiliaire.MainActivity;
 import com.laxen.auxiliaire.R;
+import com.laxen.auxiliaire.tabs.JobsFragment;
 import com.laxen.auxiliaire.tabs.ListFragment;
 import com.laxen.auxiliaire.tabs.MapFragmentTab;
+import com.laxen.auxiliaire.tabs.ProfileFragment;
 
 /**
  * Created by hp1 on 21-01-2015.
@@ -20,8 +22,10 @@ import com.laxen.auxiliaire.tabs.MapFragmentTab;
 public class ViewPagerAdapter extends FragmentStatePagerAdapter{
 
     // Fragments
-    MapFragmentTab mapFragment;
     ListFragment listFragment;
+    MapFragmentTab mapFragment;
+    JobsFragment jobsFragment;
+    ProfileFragment profileFragment;
 
     MainActivity context;
 
@@ -50,6 +54,13 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
         listFragment = new ListFragment();
     }
 
+    public void initJobsFragment() {
+        jobsFragment = new JobsFragment();
+    }
+
+    public void initProfileFragment() {
+        profileFragment = new ProfileFragment();
+    }
     public void initMapFragment(MapFragmentTab.MapFragmentListener listener) {
         mapFragment = new MapFragmentTab();
 
@@ -63,27 +74,26 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
     @Override
     public Fragment getItem(int position) {
 
-        if (position == 0) {
-
-            if (listFragment == null) {
-                initListFragment();
-            }
-
-            return listFragment;
-
-        } else if (position == 1){
-
-            if (mapFragment == null) {
-                initMapFragment(null);
-            }
-
-            return mapFragment;
-        } else {
-
-            return new ListFragment();
+        switch (position){
+            case 0:
+                if (listFragment == null)
+                    initListFragment();
+                return listFragment;
+            case 1:
+                if (mapFragment == null)
+                    initMapFragment(null);
+                return mapFragment;
+            case 2:
+                if (jobsFragment == null)
+                    initJobsFragment();
+                return jobsFragment;
+            case 3:
+                if (profileFragment == null)
+                    initProfileFragment();
+                return profileFragment;
+            default:
+                return new ListFragment();
         }
-
-
     }
 
     public int[] tabIcons = {R.drawable.ic_list_white_24dp, R.drawable.ic_explore_white_24dp,
