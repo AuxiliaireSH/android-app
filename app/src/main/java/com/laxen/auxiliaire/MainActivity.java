@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity
     private GoogleMap mMap;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
+    private MapHandler mapHandler;
+
     // Toolbar toolbar;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mapHandler = new MapHandler();
 
         initToolBar();
     }
@@ -142,6 +146,8 @@ public class MainActivity extends AppCompatActivity
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMapLongClickListener(this);
         enableMyLocation();
+
+        mMap.setOnMapClickListener(mapHandler);
     }
 
 
@@ -152,6 +158,7 @@ public class MainActivity extends AppCompatActivity
         mMap.addMarker(new MarkerOptions().position(point).title("New Place"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(point));
     }
+
 
     @Override
     public boolean onMyLocationButtonClick() {
