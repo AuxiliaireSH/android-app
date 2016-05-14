@@ -3,6 +3,7 @@ package com.laxen.auxiliaire.mapUtils;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -101,4 +102,9 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         return false;
     }
 
+    public void zoomLocation(LatLng myLatLng) {
+        CameraUpdate currentLocation = CameraUpdateFactory.newLatLngZoom(myLatLng, 15);
+        Log.d("My position", myLatLng.toString());
+        //map.animateCamera(currentLocation);
+    }
 }
