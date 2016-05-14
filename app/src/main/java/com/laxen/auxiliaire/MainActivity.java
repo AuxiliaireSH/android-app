@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback,
         GoogleMap.OnMyLocationButtonClickListener,
         ActivityCompat.OnRequestPermissionsResultCallback,
-        GoogleMap.OnMapLongClickListener,
         MapFragmentTab.MapFragmentListener {
 
 
@@ -47,8 +46,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mapHandler = new MapHandler();
 
         initToolBar();
     }
@@ -141,22 +138,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mapHandler = new MapHandler(mMap);
 
-        Log.d("App ","Listener set!");
         mMap.setOnMyLocationButtonClickListener(this);
-        mMap.setOnMapLongClickListener(this);
         enableMyLocation();
 
         mMap.setOnMapClickListener(mapHandler);
-    }
-
-
-    @Override
-    public void onMapLongClick(LatLng point) {
-
-        // adds a marker on the long pressed place
-        mMap.addMarker(new MarkerOptions().position(point).title("New Place"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(point));
+        mMap.setOnMapLongClickListener(mapHandler);
     }
 
 
