@@ -17,9 +17,11 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 import com.laxen.auxiliaire.mapUtils.MapHandler;
 import com.laxen.auxiliaire.models.Job;
 import com.laxen.auxiliaire.models.JobsModel;
@@ -194,6 +196,10 @@ public class MainActivity extends AppCompatActivity
 
         mMap.setOnMapClickListener(mapHandler);
         mMap.setOnMapLongClickListener(mapHandler);
+
+        LatLng SWEDEN = new LatLng(62.2315, 16.1932);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SWEDEN, 4.5f));
+
 
         fetchData();
     }

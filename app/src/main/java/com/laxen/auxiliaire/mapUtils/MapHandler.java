@@ -3,6 +3,7 @@ package com.laxen.auxiliaire.mapUtils;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -72,8 +73,8 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-        map.addMarker(new MarkerOptions().position(latLng).title("New Place"));
-        //map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        // map.addMarker(new MarkerOptions().position(latLng).title("New Place"));
+        // map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
     }
 
     @Override
