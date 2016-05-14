@@ -1,5 +1,6 @@
 package com.laxen.auxiliaire.mapUtils;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -14,6 +15,9 @@ import com.laxen.auxiliaire.JobsModel;
 import com.laxen.auxiliaire.MainActivity;
 import com.laxen.auxiliaire.R;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by laxen on 5/14/16.
  */
@@ -23,6 +27,7 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
     private MainActivity context;
     private FragmentTransaction transaction;
     private JobsModel jobModel;
+    private Map<Marker, Job> markerJobMap = new HashMap<>();
 
     public MapHandler(GoogleMap map, MainActivity context, JobsModel jobModel) {
         this.jobModel = jobModel;
@@ -32,12 +37,22 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
     }
 
     public void populateMap () {
-        //jobModel.getJobs().add(new Job());
+        Job job1 = new Job();
+        job1.setLat(51.5074);
+        job1.setLon(0.1278);
+
+        Job job2 = new Job();
+        job2.setLat(40.7128);
+        job2.setLon(74.0059);
+
+        jobModel.getJobs().add(job1);
+        jobModel.getJobs().add(job2);
 
         for (Job job : jobModel.getJobs()) {
             LatLng point = new LatLng(job.getLat(), job.getLon());
 
-            map.addMarker(new MarkerOptions().position(point).title(job.getTitle()));
+            Marker m = map.addMarker(new MarkerOptions().position(point).title(job.getTitle()));
+            markerJobMap.put(m, job);
         }
     }
 
@@ -62,6 +77,7 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
 
         // resets the fragment
         Fragment jobFragment = new JobFragment();
+        ((JobFragment)jobFragment).setCurrentJob(markerJobMap.get(marker));
 
         transaction = context.getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);

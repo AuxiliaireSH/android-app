@@ -193,7 +193,6 @@ public class MainActivity extends AppCompatActivity
                     Manifest.permission.ACCESS_FINE_LOCATION, true);
 
         } else if (mMap != null) {
-            Log.d("app", "penis");
             // Access to the location has been granted to the app.
             mMap.setMyLocationEnabled(true);
         }
