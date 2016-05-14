@@ -238,7 +238,8 @@ public class MainActivity extends AppCompatActivity
     }, new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError volleyError) {
-            if(volleyError != null) Log.e("MainActivity", volleyError.getMessage());
+            //if(volleyError != null) Log.e("MainActivity", volleyError.getMessage());
+            Toast.makeText(MainActivity.this, "Server not reached", Toast.LENGTH_SHORT).show();
         }
     });
 
