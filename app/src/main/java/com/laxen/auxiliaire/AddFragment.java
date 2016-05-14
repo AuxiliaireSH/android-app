@@ -59,7 +59,6 @@ public class AddFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getContext()).popFragment();
-                ((MainActivity) getContext()).initToolBar();
             }
         });
     }

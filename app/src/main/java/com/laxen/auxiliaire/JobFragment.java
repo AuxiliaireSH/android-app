@@ -49,7 +49,6 @@ public class JobFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getContext()).popFragment();
-                ((MainActivity) getContext()).initToolBar();
             }
         });
 
