@@ -13,6 +13,7 @@ import com.laxen.auxiliaire.Job;
 import com.laxen.auxiliaire.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ListFragment extends Fragment {
 
@@ -41,10 +42,10 @@ public class ListFragment extends Fragment {
 
         // specify an adapter (see also next example)
         ArrayList<Job> jobList = new ArrayList<>();
-        jobList.add(new Job());
-        jobList.add(new Job());
-        jobList.add(new Job());
-        jobList.add(new Job());
+        jobList.add(new Job(1, "User", 500, "Plumber", 43.421421, 44.21321, new Date(), "This is the descriptions of the job", "Wash my car"));
+        jobList.add(new Job(2, "User", 500, "Plumber", 43.421421, 44.21321, new Date(), "This is the descriptions of the job", "Shitters Clogged"));
+        jobList.add(new Job(3, "User", 500, "Plumber", 43.421421, 44.21321, new Date(), "This is the descriptions of the job", "Shitters Clogged"));
+        jobList.add(new Job(4, "User", 500, "Plumber", 43.421421, 44.21321, new Date(), "This is the descriptions of the job", "Shitters Clogged"));
         mAdapter = new ListAdapter(jobList);
         mRecyclerView.setAdapter(mAdapter);
 

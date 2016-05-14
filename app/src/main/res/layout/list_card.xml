@@ -13,17 +13,34 @@
         android:layout_width="match_parent"
         android:padding="4dp"
         android:layout_height="400dp"
+        card_view:cardPreventCornerOverlap="false"
         card_view:cardCornerRadius="4dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/cardview_light_background"
-            android:padding="16dp">
+            android:background="@color/cardview_light_background">
 
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/cardBackground"
+                android:src="@drawable/jobimg"
+                android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"/>
+                android:layout_height="150dp"
+                app:riv_corner_radius_top_left="4dp"
+                app:riv_corner_radius_top_right="4dp"
+                app:riv_mutate_background="true"
+                app:riv_tile_mode="repeat"/>
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="34sp"
+                android:padding="8dp"
+                android:layout_alignBottom="@id/cardBackground"
+                android:textColor="@color/white"
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -48,12 +65,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Email"
-                />
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Title"
                 />
         </RelativeLayout>
 

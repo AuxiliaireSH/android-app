@@ -27,16 +27,18 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         protected TextView vSurname;
         protected TextView vEmail;
         protected TextView vTitle;
+        protected CardView cardView;
 
         // each data item is just a string in this case
-        public View cardView;
+        public View view;
         public ViewHolder(View v) {
             super(v);
-            cardView = v;
-            vName = (TextView) cardView.findViewById(R.id.tvName);
-            vSurname = (TextView) cardView.findViewById(R.id.tvSurname);
-            vEmail = (TextView) cardView.findViewById(R.id.tvTitle);
-            vTitle = (TextView) cardView.findViewById(R.id.tvEmail);
+            view = v;
+            cardView = (CardView) view.findViewById(R.id.card_view);
+            vName = (TextView) view.findViewById(R.id.tvName);
+            vSurname = (TextView) view.findViewById(R.id.tvSurname);
+            vEmail = (TextView) view.findViewById(R.id.tvEmail);
+            vTitle = (TextView) view.findViewById(R.id.tvTitle);
         }
     }
 
@@ -61,9 +63,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Job job = mJobset.get(position);
+        holder.vTitle.setText(job.getTitle());
 
-        holder.vName.setText("NAAAME");
-        holder.vTitle.setText("TIIITLE");
 
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
