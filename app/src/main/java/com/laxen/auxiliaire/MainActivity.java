@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         tabs.setVisibility(View.VISIBLE);
+        getSupportActionBar().show();
     }
 
     public void onMapFragmentCreated() {
@@ -191,6 +193,7 @@ public class MainActivity extends AppCompatActivity
                     Manifest.permission.ACCESS_FINE_LOCATION, true);
 
         } else if (mMap != null) {
+            Log.d("app", "penis");
             // Access to the location has been granted to the app.
             mMap.setMyLocationEnabled(true);
         }

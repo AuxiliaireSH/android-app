@@ -32,6 +32,8 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
     }
 
     public void populateMap () {
+        //jobModel.getJobs().add(new Job());
+
         for (Job job : jobModel.getJobs()) {
             LatLng point = new LatLng(job.getLat(), job.getLon());
 
@@ -67,7 +69,7 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         transaction.commit();
 
         context.getSupportActionBar().hide();
-        context.getTabs().removeAllViews();
+        //context.getTabs().removeAllViews();
         return false;
     }
 
