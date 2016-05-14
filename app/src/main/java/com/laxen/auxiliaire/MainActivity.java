@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mapHandler = new MapHandler(mMap);
+        mapHandler = new MapHandler(mMap, this);
 
         mMap.setOnMyLocationButtonClickListener(this);
         //enableMyLocation(); TODO ENABLE THIS WHEN NOT DEBUGGING
