@@ -44,5 +44,11 @@ public class AddFragment extends Fragment {
         jobTypeEdit = (EditText) view.findViewById(R.id.jobTypeEdit);
         titleEdit = (EditText) view.findViewById(R.id.titleEdit);
         priceEdit = (EditText) view.findViewById(R.id.priceEdit);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO SKICKA UPP SKIT HÄR JOHAN
+            }
+        });
     }
 }
