@@ -1,5 +1,6 @@
 package com.laxen.auxiliaire;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.laxen.auxiliaire.models.Job;
@@ -17,6 +19,7 @@ import com.laxen.auxiliaire.models.Job;
 public class AddFragment extends Fragment {
 
     private Button addButton;
+    private ImageButton exitButton;
     private Integer userID;
     private EditText nameEdit;
     private EditText jobTypeEdit;
@@ -48,6 +51,15 @@ public class AddFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO SKICKA UPP SKIT HÄR JOHAN
+            }
+        });
+
+        exitButton = (ImageButton) view.findViewById(R.id.exiticon);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getContext()).popFragment();
+                ((MainActivity) getContext()).initToolBar();
             }
         });
     }

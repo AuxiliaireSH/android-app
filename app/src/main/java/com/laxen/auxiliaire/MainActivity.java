@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity
         mapHandler = new MapHandler(mMap, this, jobsModel);
 
         mMap.setOnMyLocationButtonClickListener(this);
-        //enableMyLocation(); TODO ENABLE THIS WHEN NOT DEBUGGING
+        enableMyLocation();
 
         mMap.setOnMapClickListener(mapHandler);
         mMap.setOnMapLongClickListener(mapHandler);

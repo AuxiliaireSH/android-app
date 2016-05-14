@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.laxen.auxiliaire.models.Job;
@@ -16,6 +17,7 @@ import com.laxen.auxiliaire.models.Job;
 public class JobFragment extends Fragment implements View.OnClickListener {
 
     private Button acceptButton;
+    private ImageButton exitButton;
     private Integer userID;
     private TextView nameText;
     private TextView jobTypeText;
@@ -40,6 +42,15 @@ public class JobFragment extends Fragment implements View.OnClickListener {
     public void initUI(View view) {
         acceptButton = (Button) view.findViewById(R.id.acceptbtn);
         acceptButton.setOnClickListener(this);
+
+        exitButton = (ImageButton) view.findViewById(R.id.exiticon);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getContext()).popFragment();
+                ((MainActivity) getContext()).initToolBar();
+            }
+        });
 
         nameText = (TextView) view.findViewById(R.id.nameText);
         titleText = (TextView) view.findViewById(R.id.helpTitle);
