@@ -46,6 +46,7 @@ public class ListFragment extends Fragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                ((MainActivity)getContext()).fetchData(); // fetching from server
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });

@@ -7,6 +7,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -194,7 +195,7 @@ public class MainActivity extends AppCompatActivity
         mMap.setOnMapClickListener(mapHandler);
         mMap.setOnMapLongClickListener(mapHandler);
 
-        VolleyHelper.getInstance(getApplicationContext()).addToRequestQueue(gsonRequest);
+        fetchData();
     }
 
 
@@ -225,20 +226,29 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager().popBackStack();
     }
 
+    // fetches data from server
+    public void fetchData() {
+
+        VolleyHelper.getInstance(getApplicationContext()).addToRequestQueue(gsonRequest);
+    }
+
     final GsonRequest gsonRequest = new GsonRequest(url, Job[].class, null, new Response.Listener<Job[]>() {
 
         @Override
         public void onResponse(Job[] jobs) {
+
             jobsModel.setJobs(Arrays.asList(jobs));
             MainActivity.this.mapHandler.populateMap();
             adapter.getListFragment().populuateList();
             Toast.makeText(MainActivity.this, "Jobs refreshed", Toast.LENGTH_SHORT).show();
+
         }
     }, new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError volleyError) {
             //if(volleyError != null) Log.e("MainActivity", volleyError.getMessage());
             Toast.makeText(MainActivity.this, "Server not reached", Toast.LENGTH_SHORT).show();
+
         }
     });
 
