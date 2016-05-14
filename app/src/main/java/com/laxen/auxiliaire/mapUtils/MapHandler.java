@@ -104,7 +104,6 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
 
     public void zoomLocation(LatLng myLatLng) {
         CameraUpdate currentLocation = CameraUpdateFactory.newLatLngZoom(myLatLng, 15);
-        Log.d("My position", myLatLng.toString());
         map.animateCamera(currentLocation);
     }
 }

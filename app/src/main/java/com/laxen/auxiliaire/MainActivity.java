@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity
 
     public Job currentJob;
 
+    public Boolean isLAXEN false;
+
     public void setCurrentJob(Job job) {
         this.currentJob = job;
     }
@@ -279,7 +281,9 @@ public class MainActivity extends AppCompatActivity
     });
 
     public void createMap() {
-        //mapHandler.populateMap();
+        if(isLAXEN){
+            mapHandler.populateMap();
+        }
     }
 
 }

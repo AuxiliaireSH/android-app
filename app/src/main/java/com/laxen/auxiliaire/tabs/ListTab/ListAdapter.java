@@ -1,5 +1,7 @@
 package com.laxen.auxiliaire.tabs.ListTab;
 
+import android.content.Context;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -9,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.laxen.auxiliaire.JobFragment;
+import com.laxen.auxiliaire.MainActivity;
 import com.laxen.auxiliaire.models.Job;
 import com.laxen.auxiliaire.R;
 
@@ -22,6 +26,8 @@ import java.util.StringTokenizer;
  */
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List<Job> mJobset;
+    protected Context context;
+
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -47,7 +53,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ListAdapter(List<Job> myDataset) {
+    public ListAdapter(List<Job> myDataset, Context context) {
+        this.context = context;
         mJobset = myDataset;
     }
 
@@ -66,7 +73,25 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Job job = mJobset.get(position);
+        final Job job = mJobset.get(position);
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) context;
+                mainActivity.popFragment();
+
+                mainActivity.currentJob = job;
+                mainActivity.jobFragment = new JobFragment();
+
+                FragmentTransaction transaction;
+                transaction = mainActivity.getSupportFragmentManager().beginTransaction();
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.add(R.id.fragmentcontainer, mainActivity.jobFragment).addToBackStack("jobFrag");
+                transaction.commit();
+            }
+        });
+
         holder.vTitle.setText(job.getTitle());
 
         String vDateString = "";

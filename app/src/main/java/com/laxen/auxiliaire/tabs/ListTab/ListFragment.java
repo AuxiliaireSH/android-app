@@ -74,7 +74,7 @@ public class ListFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new ListAdapter(new JobsModel().getJobs());
+        mAdapter = new ListAdapter(new JobsModel().getJobs(), getContext());
         mRecyclerView.setAdapter(mAdapter);
 
         return view;
@@ -85,7 +85,7 @@ public class ListFragment extends Fragment {
     }
 
     public void populuateList() {
-        mAdapter = new ListAdapter(jobsModel.getJobs());
+        mAdapter = new ListAdapter(jobsModel.getJobs(), getContext());
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
     }
