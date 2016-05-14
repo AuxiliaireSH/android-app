@@ -4,12 +4,16 @@ import android.Manifest;
 import android.app.FragmentTransaction;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -49,6 +53,19 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         initToolBar();
+
+        // TODO REMOVE
+        // resets the fragment
+        /*Fragment jobFragment = new JobFragment();
+
+        android.support.v4.app.FragmentTransaction transaction;
+
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.add(R.id.appContainer, jobFragment).addToBackStack("jobFrag");
+        transaction.commit();
+
+        getSupportActionBar().hide();*/
     }
 
     // inits the toolbar, actionbar and tabs
@@ -64,6 +81,7 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.aux);
+        getSupportActionBar().show();
 
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabNames, 4);
@@ -74,6 +92,11 @@ public class MainActivity extends AppCompatActivity
 
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
+
+        initSlider();
+    }
+
+    public void initSlider() {
         // tabs for list and map
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
         tabs.setCustomTabView(R.layout.custom_tab, 0);
@@ -89,8 +112,9 @@ public class MainActivity extends AppCompatActivity
                 return getResources().getColor(R.color.colorTab);
             }
         });
-    }
 
+        tabs.setVisibility(View.VISIBLE);
+    }
 
     public void onMapFragmentCreated() {
 
@@ -169,5 +193,9 @@ public class MainActivity extends AppCompatActivity
             // Access to the location has been granted to the app.
             mMap.setMyLocationEnabled(true);
         }
+    }
+
+    public void popFragment() {
+        getSupportFragmentManager().popBackStack();
     }
 }

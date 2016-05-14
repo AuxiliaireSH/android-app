@@ -48,7 +48,7 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
     public boolean onMarkerClick(Marker marker) {
 
         Log.d("App", marker.getId());
-        popFragment();
+        context.popFragment();
 
         // resets the fragment
         Fragment jobFragment = new JobFragment();
@@ -63,10 +63,4 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         return false;
     }
 
-    // pops a fragment from the backstack
-    public void popFragment() {
-
-        FragmentManager fragmentManager = context.getSupportFragmentManager();
-        fragmentManager.popBackStack();
-    }
 }
