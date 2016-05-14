@@ -11,7 +11,6 @@
         android:id="@+id/card_view"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:padding="4dp"
         android:layout_height="250dp"
         card_view:cardPreventCornerOverlap="false"
         card_view:cardCornerRadius="4dp">
@@ -65,10 +64,10 @@
 
                     <TextView
                         android:layout_gravity="top"
-                        android:id="@+id/description"
+                        android:id="@+id/tvDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="A long fakking description of the job. Loorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumorem fakking ipsumrem fakking ipsum"
+                        android:text="Description"
                         android:textSize="14sp"
                         android:layout_alignBottom="@id/cardBackground"
                         android:textColor="@color/textColor"/>

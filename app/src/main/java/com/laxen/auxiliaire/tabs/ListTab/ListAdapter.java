@@ -28,6 +28,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         protected TextView vTitle;
         protected TextView vDate;
+        protected TextView vDescription;
+        protected TextView vPrice;
         protected CardView cardView;
 
         // each data item is just a string in this case
@@ -37,6 +39,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             view = v;
             cardView = (CardView) view.findViewById(R.id.card_view);
             vTitle = (TextView) view.findViewById(R.id.tvTitle);
+            vDescription = (TextView) view.findViewById(R.id.tvDescription);
+            vPrice = (TextView) view.findViewById(R.id.tvPrice);
             vDate = (TextView) view.findViewById(R.id.tvDate);
         }
     }
@@ -77,6 +81,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         }
         holder.vDate.setText(vDateString);
 
+        holder.vDescription.setText(job.getDescription());
+        holder.vPrice.setText(job.getPrice().toString());
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
