@@ -10,6 +10,7 @@ import android.text.style.ImageSpan;
 
 import com.laxen.auxiliaire.MainActivity;
 import com.laxen.auxiliaire.R;
+import com.laxen.auxiliaire.UserFragment;
 import com.laxen.auxiliaire.models.JobsModel;
 import com.laxen.auxiliaire.tabs.JobsFragment;
 import com.laxen.auxiliaire.tabs.ListTab.ListFragment;
@@ -27,7 +28,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
     ListFragment listFragment;
     MapFragmentTab mapFragment;
     JobsFragment jobsFragment;
-    ProfileFragment profileFragment;
+    UserFragment profileFragment;
 
     MainActivity context;
 
@@ -63,7 +64,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
     }
 
     public void initProfileFragment() {
-        profileFragment = new ProfileFragment();
+        profileFragment = new UserFragment();
     }
     public void initMapFragment(MapFragmentTab.MapFragmentListener listener) {
         mapFragment = new MapFragmentTab();
