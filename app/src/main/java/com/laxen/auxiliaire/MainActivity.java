@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,6 +22,8 @@ import com.laxen.auxiliaire.mapUtils.MapHandler;
 import com.laxen.auxiliaire.tabUtils.SlidingTabLayout;
 import com.laxen.auxiliaire.tabUtils.ViewPagerAdapter;
 import com.laxen.auxiliaire.tabs.MapFragmentTab;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback,
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity
         this.currentJob = job;
     }
 
+    private final String url = "http://45.62.224.120:3000/jobs";
+
     // Toolbar toolbar;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
@@ -60,8 +66,10 @@ public class MainActivity extends AppCompatActivity
 
         jobModel = new JobsModel();
         jobFragment = new JobFragment();
-
+        
         initToolBar();
+
+        VolleyHelper.getInstance(getApplicationContext()).addToRequestQueue(gsonRequest);
 
         // TODO REMOVE
         // resets the fragment
@@ -210,4 +218,18 @@ public class MainActivity extends AppCompatActivity
     public void popFragment() {
         getSupportFragmentManager().popBackStack();
     }
+    
+    final GsonRequest gsonRequest = new GsonRequest(url, Job[].class, null, new Response.Listener<Job[]>() {
+
+        @Override
+        public void onResponse(Job[] jobs) {
+            jobModel.setJobs(Arrays.asList(jobs));
+        }
+    }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError volleyError) {
+            if(volleyError != null) Log.e("MainActivity", volleyError.getMessage());
+        }
+    });
+
 }
