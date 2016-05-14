@@ -35,7 +35,7 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
     }
 
     public void populateMap () {
-        Job job1 = new Job();
+        /*Job job1 = new Job();
         job1.setTitle("Help me with my bike!");
         job1.setLatitude(51.5074);
         job1.setLongitude(0.1278);
@@ -52,14 +52,14 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         job2.setUsername("David Göransson");
 
         jobModel.getJobs().add(job1);
-        jobModel.getJobs().add(job2);
+        jobModel.getJobs().add(job2);*/
 
         for (Job job : jobModel.getJobs()) {
             LatLng point = new LatLng(job.getLatitude(), job.getLongitude());
 
             Marker m = map.addMarker(new MarkerOptions().position(point).title(job.getTitle()));
             markerJobMap.put(m, job);
-            Log.d("app", "ADDED JOB TO MAP");
+            Log.e("app", "ADDED JOB TO MAP: ");
         }
     }
 

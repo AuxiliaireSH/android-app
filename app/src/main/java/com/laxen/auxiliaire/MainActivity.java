@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity
 
         initToolBar();
 
-        VolleyHelper.getInstance(getApplicationContext()).addToRequestQueue(gsonRequest);
+        //VolleyHelper.getInstance(getApplicationContext()).addToRequestQueue(gsonRequest);
 
         // TODO REMOVE
         // resets the fragment
@@ -148,6 +149,7 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
 
         mMapFragment.getMapAsync(this);
+
     }
 
     @Override
@@ -191,7 +193,8 @@ public class MainActivity extends AppCompatActivity
 
         mMap.setOnMapClickListener(mapHandler);
         mMap.setOnMapLongClickListener(mapHandler);
-        // mapHandler.populateMap();
+
+        VolleyHelper.getInstance(getApplicationContext()).addToRequestQueue(gsonRequest);
     }
 
 
@@ -228,6 +231,8 @@ public class MainActivity extends AppCompatActivity
         public void onResponse(Job[] jobs) {
             jobsModel.setJobs(Arrays.asList(jobs));
             Log.d("jobtype", jobs[0].toString());
+            MainActivity.this.mapHandler.populateMap();
+            Toast.makeText(MainActivity.this, "Jobs refreshed", Toast.LENGTH_SHORT).show();
 
         }
     }, new Response.ErrorListener() {
@@ -236,5 +241,9 @@ public class MainActivity extends AppCompatActivity
             if(volleyError != null) Log.e("MainActivity", volleyError.getMessage());
         }
     });
+
+    public void createMap() {
+        //mapHandler.populateMap();
+    }
 
 }
