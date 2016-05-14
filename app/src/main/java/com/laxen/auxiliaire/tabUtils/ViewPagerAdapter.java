@@ -4,7 +4,6 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
@@ -12,7 +11,7 @@ import android.text.style.ImageSpan;
 import com.laxen.auxiliaire.MainActivity;
 import com.laxen.auxiliaire.R;
 import com.laxen.auxiliaire.tabs.JobsFragment;
-import com.laxen.auxiliaire.tabs.ListFragment;
+import com.laxen.auxiliaire.tabs.ListTab.ListFragment;
 import com.laxen.auxiliaire.tabs.MapFragmentTab;
 import com.laxen.auxiliaire.tabs.ProfileFragment;
 
