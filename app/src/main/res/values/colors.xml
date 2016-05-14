@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#d32f2f</color>
     <color name="colorAccent">#7c4dff</color>
     <color name="colorTab">#ffebee</color>
+    <color name="colorRecyclerViewBackground">#fafafa</color>
     <color name="white">#ffffff</color>
     <color name="textColor">#424242</color>
 </resources>
