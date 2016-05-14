@@ -8,16 +8,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.laxen.auxiliaire.mapUtils.MapHandler;
 import com.laxen.auxiliaire.tabUtils.SlidingTabLayout;
 import com.laxen.auxiliaire.tabUtils.ViewPagerAdapter;
 import com.laxen.auxiliaire.tabs.MapFragmentTab;
@@ -141,7 +138,7 @@ public class MainActivity extends AppCompatActivity
         mapHandler = new MapHandler(mMap);
 
         mMap.setOnMyLocationButtonClickListener(this);
-        enableMyLocation();
+        //enableMyLocation(); TODO ENABLE THIS WHEN NOT DEBUGGING
 
         mMap.setOnMapClickListener(mapHandler);
         mMap.setOnMapLongClickListener(mapHandler);
