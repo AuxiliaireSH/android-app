@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorTab">
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -30,6 +30,14 @@
             android:id="@+id/titleEdit"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add job"
+            android:id="@+id/button"
+            android:layout_alignTop="@+id/exiticon"
+            android:layout_toEndOf="@+id/titleEdit" />
     </RelativeLayout>
 
     <LinearLayout
@@ -199,7 +207,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
 
                 <Button

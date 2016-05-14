@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback,
         GoogleMap.OnMyLocationButtonClickListener,
         ActivityCompat.OnRequestPermissionsResultCallback,
-        MapFragmentTab.MapFragmentListener {
+        MapFragmentTab.MapFragmentListener{
 
 
     // google maps stuff
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     private MapHandler mapHandler;
     private JobsModel jobModel;
     public JobFragment jobFragment;
+    public AddFragment addFragment;
 
     public Job currentJob;
 
@@ -188,7 +189,7 @@ public class MainActivity extends AppCompatActivity
 
         mMap.setOnMapClickListener(mapHandler);
         mMap.setOnMapLongClickListener(mapHandler);
-        mapHandler.populateMap();
+        // mapHandler.populateMap();
     }
 
 

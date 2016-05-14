@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#f44336</color>
     <color name="colorPrimaryDark">#d32f2f</color>
-    <color name="colorAccent">#7c4dff</color>
+    <color name="colorAccent">#424242</color>
     <color name="colorTab">#ffebee</color>
     <color name="colorRecyclerViewBackground">#fafafa</color>
     <color name="white">#ffffff</color>
