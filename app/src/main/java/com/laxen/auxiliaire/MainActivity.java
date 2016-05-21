@@ -269,10 +269,9 @@ public class MainActivity extends AppCompatActivity
         public void onResponse(Job[] jobs) {
 
             jobsModel.setJobs(Arrays.asList(jobs));
-            MainActivity.this.mapHandler.populateMap();
-            adapter.getListFragment().populuateList();
             Toast.makeText(MainActivity.this, "Jobs refreshed", Toast.LENGTH_SHORT).show();
 
+            refreshJobs();
         }
     }, new Response.ErrorListener() {
         @Override
@@ -283,10 +282,21 @@ public class MainActivity extends AppCompatActivity
         }
     });
 
+
+    public void refreshJobs() {
+
+        mapHandler.populateMap();
+        adapter.getListFragment().populuateList();
+    }
+
     public void createMap() {
         if(isLAXEN){
             mapHandler.populateMap();
         }
+    }
+
+    public JobsModel getJobsModel () {
+        return jobsModel;
     }
 
 }

@@ -81,19 +81,22 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
     @Override
     public boolean onMarkerClick(Marker marker) {
 
-        Log.d("App", marker.getId());
-        context.popFragment();
+        Job job = new Job();
+        job.setUsername(markerJobMap.get(marker).getUsername());
+        job.setTitle(markerJobMap.get(marker).getTitle());
+        job.setKind(markerJobMap.get(marker).getKind());
+        job.setPrice(markerJobMap.get(marker).getPrice());
 
-        context.currentJob = new Job();
-        context.currentJob.setUsername(markerJobMap.get(marker).getUsername());
-        context.currentJob.setTitle(markerJobMap.get(marker).getTitle());
-        context.currentJob.setKind(markerJobMap.get(marker).getKind());
-        context.currentJob.setPrice(markerJobMap.get(marker).getPrice());
-        context.jobFragment = new JobFragment();
+        MainActivity mainActivity = context;
+        mainActivity.popFragment();
 
-        transaction = context.getSupportFragmentManager().beginTransaction();
+        mainActivity.currentJob = job;
+        mainActivity.jobFragment = new JobFragment();
+
+        FragmentTransaction transaction;
+        transaction = mainActivity.getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        transaction.add(R.id.appContainer, context.jobFragment).addToBackStack("jobFrag");
+        transaction.add(R.id.fragmentcontainer, mainActivity.jobFragment).addToBackStack("jobFrag");
         transaction.commit();
 
 
