@@ -6,9 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +20,8 @@ import com.laxen.auxiliaire.models.Job;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by laxen on 5/14/16.
@@ -26,7 +32,8 @@ public class AddFragment extends Fragment {
     private ImageButton exitButton;
     private Integer userID;
     private EditText nameEdit;
-    private EditText jobTypeEdit;
+    private Spinner categories;
+    private ExpandableListAdapter listAdapter;
     private EditText titleEdit;
     private EditText priceEdit;
     private Job currentJob;
@@ -48,10 +55,20 @@ public class AddFragment extends Fragment {
     public void initUI(View view) {
         addButton = (Button) view.findViewById(R.id.addBtn);
         nameEdit = (EditText) view.findViewById(R.id.nameEdit);
-        jobTypeEdit = (EditText) view.findViewById(R.id.jobTypeEdit);
         titleEdit = (EditText) view.findViewById(R.id.titleEdit);
         priceEdit = (EditText) view.findViewById(R.id.priceEdit);
         descText = (EditText) view.findViewById(R.id.descEdit);
+        categories = (Spinner) view.findViewById(R.id.categories);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.categories_array, R.layout.cat_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        categories.setAdapter(adapter);
+        categories.setSelection(0);
+
+        initCategoires();
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +76,7 @@ public class AddFragment extends Fragment {
                 Job job = new Job(0,
                         nameEdit.getText().toString(),
                         Integer.parseInt(priceEdit.getText().toString()),
-                        jobTypeEdit.getText().toString(),
+                        categories.getSelectedItem().toString(),
                         11.974560,
                         57.708870,
                         new Date(),
@@ -87,5 +104,10 @@ public class AddFragment extends Fragment {
                 ((MainActivity) getContext()).popFragment();
             }
         });
+    }
+
+    public void initCategoires() {
+
+
     }
 }
