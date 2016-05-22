@@ -81,6 +81,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 MainActivity mainActivity = (MainActivity) context;
                 mainActivity.popFragment();
 
+                mainActivity.getMToolBar().setElevation(0);
+
                 mainActivity.currentJob = job;
                 mainActivity.jobFragment = new JobFragment();
 
