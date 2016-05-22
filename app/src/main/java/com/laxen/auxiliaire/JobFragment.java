@@ -68,6 +68,7 @@ public class JobFragment extends Fragment implements View.OnClickListener {
 
         nameText = (TextView) view.findViewById(R.id.nameText);
         titleText = (TextView) view.findViewById(R.id.helpTitle);
+        descText = (TextView) view.findViewById(R.id.descText);
         jobTypeText = (TextView) view.findViewById(R.id.jobTypeText);
         priceText = (TextView) view.findViewById(R.id.priceText);
 
@@ -76,6 +77,7 @@ public class JobFragment extends Fragment implements View.OnClickListener {
             titleText.setText(currentJob.getTitle());
             jobTypeText.setText(currentJob.getKind());
             priceText.setText(currentJob.getPrice()+"");
+            descText.setText(currentJob.getDescription());
         }
 
         // set color depending on job
