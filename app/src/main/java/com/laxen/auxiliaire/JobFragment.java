@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.laxen.auxiliaire.models.Job;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by laxen on 5/14/16.
  */
@@ -24,16 +26,21 @@ public class JobFragment extends Fragment implements View.OnClickListener {
     private TextView jobTypeText;
     private TextView titleText;
     private TextView priceText;
+    private int color;
     private Job currentJob;
 
     private TextView descText;
     private TextView positionText;
 
+    // UI components for ripple effect on color change
+    private View rippleView;
+    private View rippleBackView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_job, container, false);
+        currentJob = ((MainActivity)getContext()).getCurrentJob();
 
         initUI(view);
 
@@ -41,6 +48,12 @@ public class JobFragment extends Fragment implements View.OnClickListener {
     }
 
     public void initUI(View view) {
+        // hides toolbar
+        ((MainActivity)getContext()).getMToolBar().setElevation(0);
+
+        rippleView = view.findViewById(R.id.reveal);
+        rippleBackView = view.findViewById(R.id.revealBackground);
+
         acceptButton = (Button) view.findViewById(R.id.acceptbtn);
         acceptButton.setOnClickListener(this);
 
@@ -52,25 +65,21 @@ public class JobFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+
         nameText = (TextView) view.findViewById(R.id.nameText);
         titleText = (TextView) view.findViewById(R.id.helpTitle);
         jobTypeText = (TextView) view.findViewById(R.id.jobTypeText);
         priceText = (TextView) view.findViewById(R.id.priceText);
-        positionText = (TextView) view.findViewById(R.id.positionText);
 
-        if(((MainActivity)getContext()).currentJob != null) {
-            nameText.setText(((MainActivity)getContext()).currentJob.getUsername());
-            titleText.setText(((MainActivity)getContext()).currentJob.getTitle());
-            jobTypeText.setText(((MainActivity)getContext()).currentJob.getKind());
-            priceText.setText(((MainActivity)getContext()).currentJob.getPrice()+"");
+        if(currentJob != null) {
+            nameText.setText(currentJob.getUsername());
+            titleText.setText(currentJob.getTitle());
+            jobTypeText.setText(currentJob.getKind());
+            priceText.setText(currentJob.getPrice()+"");
         }
 
-
-        fillTextFields();
-    }
-
-    public void fillTextFields() {
-
+        // set color depending on job
+        colorize();
     }
 
     @Override
@@ -82,26 +91,15 @@ public class JobFragment extends Fragment implements View.OnClickListener {
         msg.show();
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-    public void setNameText(TextView nameText) {
-        this.nameText = nameText;
-    }
+    // colors the UI components depending on job category
+    public void colorize() {
+        int color = ((MainActivity)getContext())
+                .getJobsModel()
+                .getCatToColor()
+                .get(currentJob
+                        .getKind());
+        rippleView.setBackgroundColor(color);
+        rippleBackView.setBackgroundColor(color);
 
-    public void setTitleText(TextView titleText) {
-        this.titleText = titleText;
-    }
-
-    public void setPriceText(TextView priceText) {
-        this.priceText = priceText;
-    }
-
-    public void setDescText(TextView descText) {
-        this.descText = descText;
-    }
-
-    public void setPositionText(TextView positionText) {
-        this.positionText = positionText;
     }
 }

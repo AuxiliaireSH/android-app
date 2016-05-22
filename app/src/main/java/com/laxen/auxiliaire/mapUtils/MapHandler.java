@@ -90,7 +90,7 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         MainActivity mainActivity = context;
         mainActivity.popFragment();
 
-        mainActivity.currentJob = job;
+        mainActivity.setCurrentJob(job);
         mainActivity.jobFragment = new JobFragment();
 
         FragmentTransaction transaction;

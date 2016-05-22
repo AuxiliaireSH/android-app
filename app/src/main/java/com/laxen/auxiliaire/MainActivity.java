@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
     public JobFragment jobFragment;
     public AddFragment addFragment;
 
-    public Job currentJob;
+    private Job currentJob;
 
     public Boolean isLAXEN = false;
 
@@ -281,7 +281,10 @@ public class MainActivity extends AppCompatActivity
 
 
     public void refreshJobs() {
-        mapHandler.populateMap();
+        if(mapHandler != null) {
+            mapHandler.populateMap();
+        }
+
         adapter.getListFragment().populuateList();
     }
 
@@ -297,6 +300,10 @@ public class MainActivity extends AppCompatActivity
 
     public Toolbar getMToolBar() {
         return mToolbar;
+    }
+
+    public Job getCurrentJob() {
+        return currentJob;
     }
 
 }

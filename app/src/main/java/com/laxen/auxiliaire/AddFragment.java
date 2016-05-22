@@ -49,10 +49,9 @@ public class AddFragment extends Fragment {
 
     private int currentColor;
 
-
     // UI components for ripple effect on color change
-    private View mRevealView;
-    private View mRevealBackgroundView;
+    private View rippleView;
+    private View rippleBackView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,8 +70,8 @@ public class AddFragment extends Fragment {
         // hides toolbar
         ((MainActivity)getContext()).getMToolBar().setElevation(0);
 
-        mRevealView = view.findViewById(R.id.reveal);
-        mRevealBackgroundView = view.findViewById(R.id.revealBackground);
+        rippleView = view.findViewById(R.id.reveal);
+        rippleBackView = view.findViewById(R.id.revealBackground);
 
         addButton = (Button) view.findViewById(R.id.addBtn);
         nameEdit = (EditText) view.findViewById(R.id.nameEdit);
@@ -173,23 +172,23 @@ public class AddFragment extends Fragment {
 
     public void animateColor(final int color) {
         Animator animator = ViewAnimationUtils.createCircularReveal(
-                mRevealView,
-                mRevealView.getWidth() / 2,
-                mRevealView.getHeight() / 2, 0,
-                mRevealView.getWidth() / 2);
+                rippleView,
+                rippleView.getWidth() / 2,
+                rippleView.getHeight() / 2, 0,
+                rippleView.getWidth() / 2);
 
         animator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                mRevealView.setBackgroundColor(getResources().getColor(color));
+                rippleView.setBackgroundColor(getResources().getColor(color));
             }
         });
 
-        mRevealBackgroundView.setBackgroundColor(getResources().getColor(currentColor));
+        rippleBackView.setBackgroundColor(getResources().getColor(currentColor));
         animator.setStartDelay(100);
         animator.setDuration(250);
         animator.start();
-        mRevealView.setVisibility(View.VISIBLE);
+        rippleView.setVisibility(View.VISIBLE);
 
         currentColor = color;
     }
