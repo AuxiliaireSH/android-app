@@ -1,6 +1,8 @@
 package com.laxen.auxiliaire;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.FragmentTransaction;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -14,7 +16,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -51,6 +55,9 @@ public class MainActivity extends AppCompatActivity
     public Job currentJob;
 
     public Boolean isLAXEN = false;
+
+    public Toolbar mToolbar;
+
 
     public void setCurrentJob(Job job) {
         this.currentJob = job;
@@ -92,24 +99,15 @@ public class MainActivity extends AppCompatActivity
         transaction.setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.add(R.id.appContainer, jobFragment).addToBackStack("jobFrag");
         transaction.commit();
-
-        getSupportActionBar().hide();*/
+        */
     }
 
     // inits the toolbar, actionbar and tabs
     public void initToolBar() {
 
-        // probably not needed
-        // toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        // setSupportActionBar(toolbar);
-
-        // removes shadow of actionbar
-        getSupportActionBar().setElevation(0);
-        getSupportActionBar().setTitle("");
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.aux);
-
+        // finds toolbar and sets its icon
+        mToolbar = (Toolbar) findViewById(R.id.appbar);
+        mToolbar.setNavigationIcon(R.mipmap.aux);
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabNames, 4, jobsModel);
         adapter.setContext(this);
@@ -117,10 +115,9 @@ public class MainActivity extends AppCompatActivity
         // creates fragments in adapter
         adapter.initFragments(this);
 
+        // sets pager for sliding tabs
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
-
-        getSupportActionBar().show();
 
         initSlider();
     }
@@ -143,7 +140,6 @@ public class MainActivity extends AppCompatActivity
         });
 
         tabs.setVisibility(View.VISIBLE);
-        getSupportActionBar().show();
     }
 
     public void onMapFragmentCreated() {
@@ -255,6 +251,7 @@ public class MainActivity extends AppCompatActivity
 
     public void popFragment() {
         getSupportFragmentManager().popBackStack();
+        mToolbar.setElevation(4);
     }
 
     // fetches data from server
