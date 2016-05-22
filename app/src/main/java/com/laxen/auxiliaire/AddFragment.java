@@ -93,12 +93,8 @@ public class AddFragment extends Fragment {
         categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                // todo animate new color depending on category
-
-                Log.e("app", "running");
-
-                int color;
+                
+                final int color;
 
                 switch (position) {
                     case 0 : // handiwork
@@ -122,7 +118,12 @@ public class AddFragment extends Fragment {
 
                 // in order to avoid unnecessary animation
                 if(color != currentColor) {
-                    animateColor(color);
+                    ((MainActivity) getContext()).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            animateColor(color);
+                        }
+                    });
                 }
             }
 
@@ -168,6 +169,7 @@ public class AddFragment extends Fragment {
             }
         });
     }
+
 
     public void animateColor(final int color) {
         Animator animator = ViewAnimationUtils.createCircularReveal(
