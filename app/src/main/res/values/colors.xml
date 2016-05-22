@@ -8,6 +8,7 @@
     <color name="white">#ffffff</color>
     <color name="textColor">#424242</color>
     <color name="fadeTextColor">#A2A2A2</color>
+    <color name="fadeIconColor">#757575</color>
     <color name="textColorLight">#9e9e9e</color>
 
     <!-- colors for categories -->
