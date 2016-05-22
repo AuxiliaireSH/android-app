@@ -2,8 +2,8 @@
     <string name="app_name">Auxiliaire</string>
     <string name="google_maps_key">AIzaSyAt2SKlLSmY5Weko3V_87P3CMPFJ3ivuWE</string>
     <string-array name="categories_array">
-        <item>Computers/IT</item>
         <item>Handiwork</item>
+        <item>Computers/IT</item>
         <item>Studies</item>
         <item>Cooking</item>
         <item>Other</item>

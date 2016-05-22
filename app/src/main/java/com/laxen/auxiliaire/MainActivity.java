@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
 
     public Boolean isLAXEN = false;
 
-    public Toolbar mToolbar;
+    private Toolbar mToolbar;
 
 
     public void setCurrentJob(Job job) {
@@ -281,7 +281,6 @@ public class MainActivity extends AppCompatActivity
 
 
     public void refreshJobs() {
-
         mapHandler.populateMap();
         adapter.getListFragment().populuateList();
     }
@@ -294,6 +293,10 @@ public class MainActivity extends AppCompatActivity
 
     public JobsModel getJobsModel () {
         return jobsModel;
+    }
+
+    public Toolbar getMToolBar() {
+        return mToolbar;
     }
 
 }
