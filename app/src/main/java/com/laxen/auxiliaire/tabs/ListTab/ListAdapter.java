@@ -38,6 +38,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         protected TextView vDescription;
         protected TextView vPrice;
         protected CardView cardView;
+        protected View cardBackground;
 
         // each data item is just a string in this case
         public View view;
@@ -49,6 +50,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             vDescription = (TextView) view.findViewById(R.id.tvDescription);
             vPrice = (TextView) view.findViewById(R.id.tvPrice);
             vDate = (TextView) view.findViewById(R.id.tvDate);
+            cardBackground = view.findViewById(R.id.cardBackground);
         }
     }
 
@@ -110,6 +112,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         holder.vDescription.setText(job.getDescription());
         holder.vPrice.setText(job.getPrice().toString());
+
+        int color = ((MainActivity)context).getJobsModel().getCatToColor().get(job.getKind());
+
+        holder.cardBackground.setBackgroundColor(context.getResources().getColor(color));
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
