@@ -1,5 +1,6 @@
 package com.laxen.auxiliaire;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -26,7 +27,6 @@ public class JobFragment extends Fragment implements View.OnClickListener {
     private TextView jobTypeText;
     private TextView titleText;
     private TextView priceText;
-    private int color;
     private Job currentJob;
 
     private TextView descText;
@@ -98,8 +98,9 @@ public class JobFragment extends Fragment implements View.OnClickListener {
                 .getCatToColor()
                 .get(currentJob
                         .getKind());
-        rippleView.setBackgroundColor(color);
-        rippleBackView.setBackgroundColor(color);
+
+        rippleView.setBackgroundColor(getResources().getColor(color));
+        rippleBackView.setBackgroundColor(getResources().getColor(color));
 
     }
 }
