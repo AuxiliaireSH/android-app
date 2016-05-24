@@ -20,6 +20,7 @@ import android.view.ViewAnimationUtils;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity
         this.currentJob = job;
     }
 
-    private final String url = "http://45.62.224.120:3000/jobs";
+    private final String url = "http://10.0.2.2:3000/jobs";
 
     // Toolbar toolbar;
     ViewPagerAdapter adapter;
@@ -260,7 +261,7 @@ public class MainActivity extends AppCompatActivity
         VolleyHelper.getInstance(getApplicationContext()).addToRequestQueue(gsonRequest);
     }
 
-    final GsonRequest gsonRequest = new GsonRequest(url, Job[].class, null, new Response.Listener<Job[]>() {
+    final GsonRequest gsonRequest = new GsonRequest(Request.Method.GET, url, Job[].class, null, null, new Response.Listener<Job[]>() {
 
         @Override
         public void onResponse(Job[] jobs) {

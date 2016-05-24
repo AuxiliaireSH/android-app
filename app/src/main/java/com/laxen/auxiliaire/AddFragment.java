@@ -23,12 +23,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.laxen.auxiliaire.models.Job;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
+import org.json.JSONObject;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by laxen on 5/14/16.
@@ -155,8 +160,35 @@ public class AddFragment extends Fragment {
                 ((MainActivity)getContext()).refreshJobs();
                 ((MainActivity)getContext()).popFragment();
 
+                String url = "http://10.0.2.2:3000/jobs";
 
-                // TODO SKICKA UPP SKIT HÄR JOHAN
+                Map<String, String> jobMap = new HashMap<String, String>();
+                jobMap.put("title", job.getTitle());
+                jobMap.put("description", job.getDescription());
+                jobMap.put("price", job.getPrice().toString());
+                jobMap.put("kind", job.getKind());
+                jobMap.put("latitude", job.getLatitude().toString());
+                jobMap.put("longitude", job.getLongitude().toString());
+                jobMap.put("user_id", "1"); //TODO add user here
+
+
+                GsonRequest gsonRequest = new GsonRequest(Request.Method.POST, url, Job[].class, null,
+                        jobMap, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Add toast here
+                    }
+                },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // Add toast here
+                                if (null != error.networkResponse) {
+                                    Log.d("e13" + ": ", "Error Response code: " + error.networkResponse.statusCode);
+                                }
+                            }
+                        });
+                VolleyHelper.getInstance(getContext()).addToRequestQueue(gsonRequest);
             }
         });
 
