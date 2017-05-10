@@ -1,6 +1,5 @@
 package com.laxen.auxiliaire;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,8 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.laxen.auxiliaire.models.Job;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by laxen on 5/14/16.
@@ -43,7 +40,6 @@ public class JobFragment extends Fragment implements View.OnClickListener {
         currentJob = ((MainActivity)getContext()).getCurrentJob();
 
         initUI(view);
-
         return view;
     }
 
@@ -101,7 +97,7 @@ public class JobFragment extends Fragment implements View.OnClickListener {
                 .get(currentJob
                         .getKind());
 
-        rippleView.setBackgroundColor(getResources().getColor(color));
+        rippleView.setBackgroundColor(color);
         rippleBackView.setBackgroundColor(getResources().getColor(color));
 
     }

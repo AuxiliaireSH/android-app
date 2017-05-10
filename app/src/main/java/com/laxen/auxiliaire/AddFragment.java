@@ -2,9 +2,8 @@ package com.laxen.auxiliaire;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.os.Bundle;
+import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,22 +15,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.laxen.auxiliaire.models.Job;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import org.json.JSONObject;
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +52,7 @@ public class AddFragment extends Fragment {
     // UI components for ripple effect on color change
     private View rippleView;
     private View rippleBackView;
+    private Animator animator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,6 +74,8 @@ public class AddFragment extends Fragment {
         rippleView = view.findViewById(R.id.reveal);
         rippleBackView = view.findViewById(R.id.revealBackground);
 
+
+
         addButton = (Button) view.findViewById(R.id.addBtn);
         nameEdit = (EditText) view.findViewById(R.id.nameEdit);
         titleEdit = (EditText) view.findViewById(R.id.titleEdit);
@@ -97,7 +95,7 @@ public class AddFragment extends Fragment {
         categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                
+
                 final int color;
 
                 switch (position) {
@@ -120,15 +118,8 @@ public class AddFragment extends Fragment {
                         color = R.color.colorPrimary;
                 }
 
-                // in order to avoid unnecessary animation
-                if(color != currentColor) {
-                    ((MainActivity) getContext()).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            animateColor(color);
-                        }
-                    });
-                }
+                animateColor(color);
+
             }
 
             @Override
@@ -202,12 +193,15 @@ public class AddFragment extends Fragment {
     }
 
 
+    @UiThread
     public void animateColor(final int color) {
-        Animator animator = ViewAnimationUtils.createCircularReveal(
+        // animator to animate color on rippleview
+        animator = ViewAnimationUtils.createCircularReveal(
                 rippleView,
                 rippleView.getWidth() / 2,
                 rippleView.getHeight() / 2, 0,
                 rippleView.getWidth() / 2);
+
 
         animator.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -216,12 +210,14 @@ public class AddFragment extends Fragment {
             }
         });
 
-        rippleBackView.setBackgroundColor(getResources().getColor(currentColor));
+        rippleBackView.setBackgroundColor(getResources().getColor(color));
         animator.setStartDelay(100);
         animator.setDuration(250);
+
         animator.start();
         rippleView.setVisibility(View.VISIBLE);
 
+        // saves last color of rippleView
         currentColor = color;
     }
 }
