@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.WindowManager;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -36,6 +37,8 @@ import com.laxen.auxiliaire.tabUtils.ViewPagerAdapter;
 import com.laxen.auxiliaire.tabs.MapFragmentTab;
 
 import java.util.Arrays;
+
+import static android.R.color.transparent;
 
 public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback,
@@ -84,20 +87,6 @@ public class MainActivity extends AppCompatActivity
 
         initToolBar();
 
-
-        //VolleyHelper.getInstance(getApplicationContext()).addToRequestQueue(gsonRequest);
-
-        // TODO REMOVE
-        // resets the fragment
-        /*Fragment jobFragment = new JobFragment();
-
-        android.support.v4.app.FragmentTransaction transaction;
-
-        transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        transaction.add(R.id.appContainer, jobFragment).addToBackStack("jobFrag");
-        transaction.commit();
-        */
     }
 
     // inits the toolbar, actionbar and tabs
@@ -124,6 +113,8 @@ public class MainActivity extends AppCompatActivity
         tabs.setDistributeEvenly(true);
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
+
+        tabs.setSelectedIndicatorColors(getResources().getColor(transparent));
 
         // colors the scroller
         /*tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
