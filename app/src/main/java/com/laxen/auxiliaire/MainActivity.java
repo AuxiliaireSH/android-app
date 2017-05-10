@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity
 
     public Boolean isLAXEN = false;
 
-    private Toolbar mToolbar;
-
 
     public void setCurrentJob(Job job) {
         this.currentJob = job;
@@ -66,7 +64,6 @@ public class MainActivity extends AppCompatActivity
 
     private final String url = "http://10.0.2.2:3000/jobs";
 
-    // Toolbar toolbar;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
     ViewPager pager;
@@ -106,10 +103,6 @@ public class MainActivity extends AppCompatActivity
     // inits the toolbar, actionbar and tabs
     public void initToolBar() {
 
-        // finds toolbar and sets its icon
-        mToolbar = (Toolbar) findViewById(R.id.appbar);
-        mToolbar.setNavigationIcon(R.mipmap.aux);
-
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabNames, 4, jobsModel);
         adapter.setContext(this);
 
@@ -133,12 +126,12 @@ public class MainActivity extends AppCompatActivity
         tabs.setViewPager(pager);
 
         // colors the scroller
-        tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+        /*tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
                 return getResources().getColor(R.color.colorTab);
             }
-        });
+        });*/
 
         tabs.setVisibility(View.VISIBLE);
     }
@@ -252,7 +245,6 @@ public class MainActivity extends AppCompatActivity
 
     public void popFragment() {
         getSupportFragmentManager().popBackStack();
-        mToolbar.setElevation(4);
     }
 
     // fetches data from server
@@ -297,10 +289,6 @@ public class MainActivity extends AppCompatActivity
 
     public JobsModel getJobsModel () {
         return jobsModel;
-    }
-
-    public Toolbar getMToolBar() {
-        return mToolbar;
     }
 
     public Job getCurrentJob() {

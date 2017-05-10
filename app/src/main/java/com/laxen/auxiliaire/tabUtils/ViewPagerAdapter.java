@@ -79,6 +79,13 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
     @Override
     public Fragment getItem(int position) {
 
+        for(int i = 0; i < 4; i++) {
+            context.getResources().getDrawable(tabIcons[i]).setAlpha(50);
+        }
+
+
+        context.getResources().getDrawable(tabIcons[position]).setAlpha(250);
+
         switch (position){
             case 0:
                 if (listFragment == null)
@@ -101,14 +108,15 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
         }
     }
 
-    public int[] tabIcons = {R.drawable.ic_list_white_24dp, R.drawable.ic_explore_white_24dp,
-                                R.drawable.ic_work_white_24dp, R.drawable.ic_person_white_24dp};
+    public int[] tabIcons = {R.drawable.ic_list_black_24dp, R.drawable.ic_settings_black_24dp,
+                                R.drawable.ic_assignment_late_black_24dp, R.drawable.ic_account_circle_black_24dp};
 
     @Override
     public CharSequence getPageTitle(int position) {
 
 
         Drawable image = context.getResources().getDrawable(tabIcons[position]);
+        image.setAlpha(50);
         image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
         //image.setBounds(image.getIntrinsicWidth(), image.getIntrinsicHeight(), 0, 1);
         SpannableString sb = new SpannableString(" ");

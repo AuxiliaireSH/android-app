@@ -44,8 +44,6 @@ public class JobFragment extends Fragment implements View.OnClickListener {
     }
 
     public void initUI(View view) {
-        // hides toolbar
-        ((MainActivity)getContext()).getMToolBar().setElevation(0);
 
         rippleView = view.findViewById(R.id.reveal);
         rippleBackView = view.findViewById(R.id.revealBackground);

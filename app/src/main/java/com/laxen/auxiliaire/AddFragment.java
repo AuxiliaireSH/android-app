@@ -68,9 +68,6 @@ public class AddFragment extends Fragment {
         // current color to be used by animator
         currentColor = R.color.colorPrimary;
 
-        // hides toolbar
-        ((MainActivity)getContext()).getMToolBar().setElevation(0);
-
         rippleView = view.findViewById(R.id.reveal);
         rippleBackView = view.findViewById(R.id.revealBackground);
 
