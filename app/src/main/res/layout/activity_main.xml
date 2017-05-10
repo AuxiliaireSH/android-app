@@ -9,7 +9,41 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="@dimen/activity_horizontal_margin"
         android:id="@+id/fragmentcontainer">
+
+        <RelativeLayout
+            android:layout_below="@+id/linearLayout"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:id="@+id/title_area"
+            android:layout_width="match_parent"
+            android:layout_height="75dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/white"
+                android:text="All posts"
+                android:id="@+id/title_text"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/adder_button"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:textColor="@color/white"
+                android:text="Add post"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
