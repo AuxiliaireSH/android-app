@@ -79,13 +79,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
     @Override
     public Fragment getItem(int position) {
 
-        for(int i = 0; i < 4; i++) {
-            context.getResources().getDrawable(tabIcons[i]).setAlpha(50);
-        }
-
-
-        context.getResources().getDrawable(tabIcons[position]).setAlpha(250);
-
         switch (position){
             case 0:
                 if (listFragment == null)
@@ -113,7 +106,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
 
     @Override
     public CharSequence getPageTitle(int position) {
-
 
         Drawable image = context.getResources().getDrawable(tabIcons[position]);
         image.setAlpha(50);

@@ -3,277 +3,225 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:clickable="true"
-    android:background="@color/white">
-
-    <View
-        android:id="@+id/revealBackground"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:paddingTop="24dp"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp">
-    </View>
+    android:clickable="true">
 
     <RelativeLayout
-        android:id="@+id/reveal"
+        android:id="@+id/add_background"
+        android:background="@drawable/background_gradient"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:paddingTop="24dp"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:scaleType="fitXY"
-            android:id="@+id/exiticon"
-            android:layout_margin="5pt"
-            android:src="@drawable/ic_close_white_24dp"
-            android:layout_alignParentStart="true"
-            android:background="#00000000" />
+        <RelativeLayout
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:id="@+id/title_area"
+            android:layout_width="match_parent"
+            android:layout_height="75dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/white"
+                android:text="New post"
+                android:id="@+id/title_text"
+                android:layout_centerVertical="true" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Your job title here"
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            android:layout_marginBottom="16dp"
-            android:id="@+id/titleEdit"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="16dp"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cancel"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:textColor="@color/white"
+                android:text="Cancel"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
 
-    </RelativeLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="150dp"
-        android:paddingBottom="24dp"
-        android:orientation="vertical">
-
+        </RelativeLayout>
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_margin="16dp"
+            android:layout_below="@+id/title_area"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="24dp"
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/personLayout"
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="center_horizontal">
+                android:layout_height="wrap_content"
+                android:hint="Your title here"
+                android:textSize="28sp"
+                android:textColor="@color/white"
+                android:id="@+id/titleEdit"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:scaleType="fitXY"
-                    android:id="@+id/phoneIcon"
-                    android:tint="@color/fadeIconColor"
-                    android:src="@drawable/ic_person_black_24dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Your name"
-                    android:layout_marginLeft="16dp"
-                    android:textSize="21dp"
-                    android:singleLine="true"
-                    android:textColor="@color/textColor"
-                    android:textColorHighlight="@color/textColorLight"
-                    android:textColorHint="@color/textColorLight"
-                    android:id="@+id/nameEdit"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/phoneIcon" />
-
-
-            </RelativeLayout>
 
             <LinearLayout
                 android:orientation="vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
+                android:layout_height="match_parent">
 
                 <RelativeLayout
-                    android:id="@+id/relativeLayout"
+                    android:id="@+id/personLayout"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal" >
+                    android:layout_gravity="center_horizontal">
 
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:scaleType="fitXY"
-                        android:id="@+id/imageView"
-                        android:tint="@color/fadeIconColor"
-                        android:src="@drawable/ic_build_black_24dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentStart="true" />
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/categories"
-                        android:layout_marginLeft="16dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/imageView" />
-
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/relativeLayout5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal" >
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:scaleType="fitXY"
-                        android:id="@+id/imageView5"
-                        android:tint="@color/fadeIconColor"
-                        android:src="@drawable/ic_mode_edit_black_24dp"
+                        android:id="@+id/phoneIcon"
+                        android:tint="@color/lightPink"
+                        android:src="@drawable/ic_person_black_24dp"
+                        android:alpha="5"
                         android:layout_centerVertical="true"
                         android:layout_alignParentStart="true" />
 
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="Describe what you want help with"
-                        android:singleLine="false"
+                        android:hint="Your name"
                         android:layout_marginLeft="16dp"
-                        android:textSize="21dp"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/textColorLight"
-                        android:textColorHint="@color/textColorLight"
-                        android:id="@+id/descEdit"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/imageView5" />
-
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-
-                <RelativeLayout
-                    android:id="@+id/relativeLayout2"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal" >
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:scaleType="fitXY"
-                        android:id="@+id/imageView2"
-                        android:tint="@color/fadeIconColor"
-                        android:src="@drawable/ic_monetization_on_black_24dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true" />
-
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:hint="Your max price"
-                        android:layout_marginLeft="16dp"
-                        android:textSize="21dp"
+                        android:background="@android:color/transparent"
+                        android:textSize="18dp"
                         android:singleLine="true"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/textColorLight"
-                        android:textColorHint="@color/textColorLight"
-                        android:id="@+id/priceEdit"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/imageView2" />
+                        android:id="@+id/nameEdit"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/phoneIcon" />
 
 
                 </RelativeLayout>
-            </LinearLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_centerVertical="true"
+                            android:scaleType="fitXY"
+                            android:layout_alignParentStart="true"
+                            android:src="@drawable/ic_build_black_24dp"
+                            android:tint="@color/lightPink" />
+
+                        <Spinner
+                            android:id="@+id/categories"
+                            android:layout_width="200dp"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="16dp"
+                            android:layout_toEndOf="@+id/imageView"
+                            android:textColor="@color/white"
+                            android:textSize="18dp" />
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:scaleType="fitXY"
+                            android:id="@+id/imageView5"
+                            android:tint="@color/lightPink"
+                            android:src="@drawable/ic_mode_edit_black_24dp"
+                            android:layout_centerVertical="true" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Describe what you want help with"
+                            android:singleLine="false"
+                            android:background="@android:color/transparent"
+                            android:layout_marginLeft="16dp"
+                            android:textSize="18dp"
+                            android:id="@+id/descEdit"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/imageView5" />
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp" >
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:scaleType="fitXY"
+                            android:id="@+id/imageView2"
+                            android:tint="@color/lightPink"
+                            android:src="@drawable/ic_monetization_on_black_24dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true" />
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:hint="Your price"
+                            android:layout_marginLeft="16dp"
+                            android:textSize="21dp"
+                            android:background="@android:color/transparent"
+                            android:singleLine="true"
+                            android:id="@+id/priceEdit"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/imageView2" />
+
+
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <RelativeLayout
-                    android:id="@+id/relativeLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal" >
+                    android:layout_height="match_parent"
+                    android:gravity="center|bottom">
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:scaleType="fitXY"
-                        android:id="@+id/imageView3"
-                        android:tint="@color/fadeIconColor"
-                        android:src="@drawable/ic_explore_black_24dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true" />
-
-                    <EditText
+                    <Button
+                        android:id="@+id/addBtn"
+                        android:text="Save"
+                        android:layout_marginBottom="50dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:editable="false"
-                        android:hint="Your position"
-                        android:layout_marginLeft="16dp"
-                        android:textSize="21dp"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/textColorLight"
-                        android:textColorHint="@color/textColorLight"
-                        android:id="@+id/positionEdit"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@+id/imageView3" />
+                        android:background="@drawable/circle" />
 
                 </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/relativeLayout4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal" >
 
-                </RelativeLayout>
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="16dp"
-                android:layout_gravity="center_horizontal">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add job"
-                    android:id="@+id/addBtn"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true" />
-
-            </RelativeLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.laxen.auxiliaire.tabs.ListTab;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -26,10 +27,7 @@ public class ListFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private Button fab;
-
-
-    private FragmentTransaction transaction;
+    private FloatingActionButton fab;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,16 +47,11 @@ public class ListFragment extends Fragment {
             }
         });
 
-        fab = (Button) view.findViewById(R.id.fabButton);
+        fab = (FloatingActionButton) view.findViewById(R.id.fabButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getContext()).addFragment = new AddFragment();
-
-                transaction = ((MainActivity)getContext()).getSupportFragmentManager().beginTransaction();
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                transaction.add(R.id.fragmentcontainer, ((MainActivity)getContext()).addFragment).addToBackStack("jobFrag");
-                transaction.commit();
+                // todo switch to map view
             }
         });
 

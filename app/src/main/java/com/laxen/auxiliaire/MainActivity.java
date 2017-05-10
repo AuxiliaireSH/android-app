@@ -12,12 +12,14 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Transition;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity
     public JobFragment jobFragment;
     public AddFragment addFragment;
 
+    private TextView addText;
     private Job currentJob;
 
     public Boolean isLAXEN = false;
@@ -84,6 +87,20 @@ public class MainActivity extends AppCompatActivity
 
         jobsModel = new JobsModel();
         jobFragment = new JobFragment();
+
+
+        addText = (TextView) findViewById(R.id.adder_button);
+        addText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addFragment = new AddFragment();
+
+                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.add(R.id.fragmentcontainer, addFragment).addToBackStack("jobFrag");
+                transaction.commit();
+            }
+        });
 
         initToolBar();
 

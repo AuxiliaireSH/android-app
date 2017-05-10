@@ -2,6 +2,11 @@ package com.laxen.auxiliaire;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
@@ -16,6 +21,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -35,6 +42,9 @@ import java.util.Map;
  */
 public class AddFragment extends Fragment {
 
+    private RelativeLayout background;
+
+    private Drawable currentBackground;
     private Button addButton;
     private ImageButton exitButton;
     private Integer userID;
@@ -65,8 +75,11 @@ public class AddFragment extends Fragment {
 
     public void initUI(View view) {
 
+        background = (RelativeLayout) view.findViewById(R.id.add_background);
+
         // current color to be used by animator
         currentColor = R.color.colorPrimary;
+        currentBackground = getResources().getDrawable(R.drawable.background_gradient);
 
         rippleView = view.findViewById(R.id.reveal);
         rippleBackView = view.findViewById(R.id.revealBackground);
@@ -95,6 +108,7 @@ public class AddFragment extends Fragment {
 
                 final int color;
 
+                updateBackgroundColor();
                 switch (position) {
                     case 0 : // handiwork
                         color = R.color.colorPrimary;
@@ -115,8 +129,6 @@ public class AddFragment extends Fragment {
                         color = R.color.colorPrimary;
                 }
 
-                animateColor(color);
-
             }
 
             @Override
@@ -124,6 +136,8 @@ public class AddFragment extends Fragment {
 
             }
         });
+
+
 
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -179,16 +193,27 @@ public class AddFragment extends Fragment {
                 VolleyHelper.getInstance(getContext()).addToRequestQueue(gsonRequest);
             }
         });
-
-        exitButton = (ImageButton) view.findViewById(R.id.exiticon);
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) getContext()).popFragment();
-            }
-        });
     }
 
+    public void updateBackgroundColor() {
+
+        Log.d("derp", "updating");
+
+        int d = 0x0E0E0E;
+        int c1 = 0x61CCE4;
+        int c2 = 0x625FF1;
+
+        GradientDrawable gd = new GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM,
+                new int[] {c1, d});
+
+        Drawable[] grads = {currentBackground, gd};
+
+        TransitionDrawable transitionDrawable = new TransitionDrawable(grads);
+        background.setBackground(transitionDrawable);
+        transitionDrawable.startTransition(500);
+
+    }
 
     @UiThread
     public void animateColor(final int color) {

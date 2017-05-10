@@ -1,14 +1,17 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
+    android:shape="rectangle">
+
+    <corners
+        android:radius="40dp"/>
 
     <gradient
         android:angle="135"
-        android:startColor="@color/white"
-        android:endColor="@color/white"
+        android:startColor="#42E695"
+        android:endColor="#3BB2B8"
         android:type="linear" />
 
     <size
-        android:width="30dp"
-        android:height="30dp"/>
+        android:width="132dp"
+        android:height="42dp"/>
 
 </shape>
