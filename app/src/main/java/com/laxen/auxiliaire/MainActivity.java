@@ -106,6 +106,10 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public void exitView(View v) {
+        popFragment();
+    }
+
     // inits the toolbar, actionbar and tabs
     public void initToolBar() {
 

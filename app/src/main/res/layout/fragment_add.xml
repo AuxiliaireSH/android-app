@@ -18,9 +18,20 @@
             android:layout_width="match_parent"
             android:layout_height="75dp">
 
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="true"
+                android:onClick="exitView"
+                android:src="?android:attr/homeAsUpIndicator"
+                android:layout_centerVertical="true"
+                android:id="@+id/back_button" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/back_button"
                 android:textSize="24dp"
                 android:textStyle="bold"
                 android:layout_marginLeft="8dp"
@@ -35,6 +46,7 @@
                 android:id="@+id/cancel"
                 android:textStyle="bold"
                 android:textSize="20dp"
+                android:onClick="exitView"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:textColor="@color/white"
                 android:text="Cancel"
