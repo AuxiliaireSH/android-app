@@ -7,10 +7,7 @@
     <color name="colorRecyclerViewBackground">#fafafa</color>
     <color name="white">#ffffff</color>
     <color name="lightPink">#F4A6CE</color>
-    <color name="textColor">#424242</color>
-    <color name="fadeTextColor">#A2A2A2</color>
-    <color name="fadeIconColor">#757575</color>
-    <color name="textColorLight">#9e9e9e</color>
+    <color name="textColor">#ffffff</color>
 
     <!-- colors for categories -->
     <color name="colorComputer">#e91e63</color>

@@ -61,7 +61,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:scaleType="fitXY"
-                        android:tint="@color/fadeIconColor"
+                        android:tint="@color/lightPink"
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_description_black_24dp"
                         android:id="@+id/imageView6" />
@@ -88,7 +88,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:scaleType="fitXY"
-                        android:tint="@color/fadeIconColor"
+                        android:tint="@color/lightPink"
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_monetization_on_black_24dp"
                         android:id="@+id/imageView7" />
@@ -116,7 +116,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:tint="@color/fadeTextColor"
+                    android:tint="@color/lightPink"
                     android:paddingEnd="2dp"
                     android:src="@drawable/ic_access_time_black_18dp"/>
 
@@ -127,7 +127,7 @@
                     android:text="Yesterday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/fadeTextColor" />
+                    android:textColor="@color/lightPink" />
 
             </LinearLayout>
 

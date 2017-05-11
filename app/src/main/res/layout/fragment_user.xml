@@ -2,194 +2,111 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="-30dp">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/profilepic" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/personLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:text="Johan Andersson"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/jobTypeText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="I'm a handy student who loves lifting things. I also love mushroom juice and girls."
+            android:textAlignment="center"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout5"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_margin="16dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/thumbImage"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="-2dp"
+                android:scaleType="fitXY"
+                android:tint="@color/lightPink"
+                android:src="@drawable/ic_thumb_up_black_24dp"/>
 
-                <RelativeLayout
-                    android:id="@+id/personLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:scaleType="fitXY"
-                        android:id="@+id/phoneIcon"
-                        android:tint="@color/fadeIconColor"
-                        android:src="@drawable/ic_person_black_24dp"
-                        android:layout_alignTop="@+id/nameText"
-                        android:layout_alignParentStart="true" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Johan Andersson"
-                        android:ems="10"
-                        android:layout_marginLeft="16dp"
-                        android:textSize="21dp"
-                        android:textColor="@color/textColor"
-                        android:id="@+id/nameText"
-                        android:layout_centerVertical="true"
-                        android:layout_toEndOf="@+id/phoneIcon" />
+            <TextView
+                android:id="@+id/descText"
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23 people recommend Johan's services."
+                android:textAlignment="center"
+                android:textSize="14sp" />
 
 
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_horizontal" >
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:scaleType="fitXY"
-                            android:id="@+id/imageView"
-                            android:tint="@color/fadeIconColor"
-                            android:src="@drawable/ic_build_black_24dp"
-                            android:layout_alignTop="@+id/jobTypeText"
-                            android:layout_alignParentStart="true" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Handy student"
-                            android:ems="10"
-                            android:layout_marginLeft="16dp"
-                            android:textSize="21dp"
-                            android:textColor="@color/textColor"
-                            android:id="@+id/jobTypeText"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/imageView" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout5"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_horizontal" >
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:scaleType="fitXY"
-                            android:id="@+id/imageView5"
-                            android:tint="@color/fadeIconColor"
-                            android:src="@drawable/ic_email_black_24dp"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentStart="true" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="johan@horv.se"
-                            android:singleLine="false"
-                            android:layout_marginLeft="16dp"
-                            android:textSize="21dp"
-                            android:textColor="@color/textColor"
-                            android:textColorHighlight="@color/textColorLight"
-                            android:textColorHint="@color/textColorLight"
-                            android:id="@+id/descText"
-                            android:layout_alignTop="@+id/imageView5"
-                            android:layout_toEndOf="@+id/imageView5" />
-
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout2"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_horizontal" >
-
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:scaleType="fitXY"
-                            android:id="@+id/imageView2"
-                            android:tint="@color/fadeIconColor"
-                            android:src="@drawable/ic_call_black_24dp"
-                            android:layout_alignTop="@+id/priceText"
-                            android:layout_alignParentStart="true" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="070-123 45 67"
-                            android:ems="10"
-                            android:layout_marginLeft="16dp"
-                            android:textSize="21dp"
-                            android:textColor="@color/textColor"
-                            android:id="@+id/priceText"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/imageView2" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-
-                    <RelativeLayout
-                        android:id="@+id/relativeLayout4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal" >
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal">
-
-                </RelativeLayout>
-
-            </LinearLayout>
         </LinearLayout>
 
-    </ScrollView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:gravity="center|bottom">
+
+        <Button
+            android:id="@+id/editBtn"
+            android:layout_marginBottom="8dp"
+            android:text="Edit"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle" />
+
+    </RelativeLayout>
+
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
+import android.util.Log;
 
 import com.laxen.auxiliaire.MainActivity;
 import com.laxen.auxiliaire.R;

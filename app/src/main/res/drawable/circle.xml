@@ -10,8 +10,4 @@
         android:endColor="#3BB2B8"
         android:type="linear" />
 
-    <size
-        android:width="132dp"
-        android:height="42dp"/>
-
 </shape>
