@@ -15,11 +15,11 @@ public class JobsModel {
 	public JobsModel () {
 
 		// maps all job categories to their color
-		catToColor.put("Handiwork", R.color.colorPrimary);
-		catToColor.put("Computers/IT", R.color.colorComputer);
-		catToColor.put("Studies", R.color.colorStudies);
-		catToColor.put("Cooking", R.color.colorStudies);
-		catToColor.put("Other", R.color.colorOther);
+		catToColor.put("Handiwork", R.color.colorHandiworkStart);
+		catToColor.put("Computers/IT", R.color.colorComputerStart);
+		catToColor.put("Studies", R.color.colorStudiesStart);
+		catToColor.put("Cooking", R.color.colorCookingStart);
+		catToColor.put("Other", R.color.colorOtherStart);
 	}
 
 	public List<Job> getJobs() {

@@ -261,7 +261,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             mTabStrip.onViewPagerPageChanged(position, positionOffset);
 
+            for(int i = 0; i < mTabStrip.getChildCount(); i++) {
+                mTabStrip.getChildAt(i).setAlpha(0.25f);
+            }
+
             View selectedTitle = mTabStrip.getChildAt(position);
+            selectedTitle.setAlpha(1f);
+
             int extraOffset = (selectedTitle != null)
                     ? (int) (positionOffset * selectedTitle.getWidth())
                     : 0;

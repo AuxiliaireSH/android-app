@@ -42,7 +42,7 @@ import java.util.Map;
  */
 public class AddFragment extends Fragment {
 
-    private RelativeLayout background;
+    private View background;
 
     private Drawable currentBackground;
     private Button addButton;
@@ -57,12 +57,12 @@ public class AddFragment extends Fragment {
     private TextView descText;
     private TextView positionText;
 
-    private int currentColor;
 
-    // UI components for ripple effect on color change
-    private View rippleView;
-    private View rippleBackView;
-    private Animator animator;
+    final int[] startColors = {   R.color.colorHandiworkStart, R.color.colorComputerStart,
+            R.color.colorStudiesStart, R.color.colorCookingStart, R.color.colorOtherStart};
+
+    final int[] endColors = {   R.color.colorHandiworkEnd, R.color.colorComputerEnd,
+            R.color.colorStudiesEnd, R.color.colorCookingEnd, R.color.colorOtherEnd};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,16 +75,7 @@ public class AddFragment extends Fragment {
 
     public void initUI(View view) {
 
-        background = (RelativeLayout) view.findViewById(R.id.add_background);
-
-        // current color to be used by animator
-        currentColor = R.color.colorPrimary;
-        currentBackground = getResources().getDrawable(R.drawable.background_gradient);
-
-        rippleView = view.findViewById(R.id.reveal);
-        rippleBackView = view.findViewById(R.id.revealBackground);
-
-
+        background = view.findViewById(R.id.add_background);
 
         addButton = (Button) view.findViewById(R.id.addBtn);
         nameEdit = (EditText) view.findViewById(R.id.nameEdit);
@@ -106,28 +97,7 @@ public class AddFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                final int color;
-
-                updateBackgroundColor();
-                switch (position) {
-                    case 0 : // handiwork
-                        color = R.color.colorPrimary;
-                        break;
-                    case 1 : // computers
-                        color = R.color.colorComputer;
-                        break;
-                    case 2 : // studies
-                        color = R.color.colorStudies;
-                        break;
-                    case 3 : // cooking
-                        color = R.color.colorCooking;
-                        break;
-                    case 4 : // other
-                        color = R.color.colorOther;
-                        break;
-                    default:
-                        color = R.color.colorPrimary;
-                }
+                updateBackgroundColor(startColors[position], endColors[position]);
 
             }
 
@@ -195,51 +165,28 @@ public class AddFragment extends Fragment {
         });
     }
 
-    public void updateBackgroundColor() {
+    @UiThread
+    public void updateBackgroundColor(int colorStart, int colorEnd) {
 
-        Log.d("derp", "updating");
-
-        int d = 0x0E0E0E;
-        int c1 = 0x61CCE4;
-        int c2 = 0x625FF1;
+        Log.d("test", "updating color");
 
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {c1, d});
+                new int[] {getResources().getColor(colorStart), getResources().getColor(colorEnd)});
 
-        Drawable[] grads = {currentBackground, gd};
+        Drawable[] grads = {background.getBackground(), gd};
 
         TransitionDrawable transitionDrawable = new TransitionDrawable(grads);
-        background.setBackground(transitionDrawable);
+        background.setBackgroundDrawable(transitionDrawable);
         transitionDrawable.startTransition(500);
 
+
+        //background.setBackgroundColor(getResources().getColor(R.color.colorComputer));
+
+
+        Log.d("test", "background: " + background.getBackground());
+
     }
 
-    @UiThread
-    public void animateColor(final int color) {
-        // animator to animate color on rippleview
-        animator = ViewAnimationUtils.createCircularReveal(
-                rippleView,
-                rippleView.getWidth() / 2,
-                rippleView.getHeight() / 2, 0,
-                rippleView.getWidth() / 2);
 
-
-        animator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-                rippleView.setBackgroundColor(getResources().getColor(color));
-            }
-        });
-
-        rippleBackView.setBackgroundColor(getResources().getColor(color));
-        animator.setStartDelay(100);
-        animator.setDuration(250);
-
-        animator.start();
-        rippleView.setVisibility(View.VISIBLE);
-
-        // saves last color of rippleView
-        currentColor = color;
-    }
 }

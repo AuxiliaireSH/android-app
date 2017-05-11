@@ -134,16 +134,7 @@ public class MainActivity extends AppCompatActivity
         tabs.setDistributeEvenly(true);
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
-
         tabs.setSelectedIndicatorColors(getResources().getColor(transparent));
-
-        // colors the scroller
-        /*tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-            @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.colorTab);
-            }
-        });*/
 
         tabs.setVisibility(View.VISIBLE);
     }

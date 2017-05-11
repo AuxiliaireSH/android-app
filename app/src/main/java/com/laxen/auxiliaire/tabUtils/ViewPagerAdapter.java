@@ -52,7 +52,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
 
     public void initFragments(MapFragmentTab.MapFragmentListener listener) {
         initListFragment();
-        initMapFragment(listener);
+        //initMapFragment(listener);
     }
 
     public void initListFragment() {
@@ -109,7 +109,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
     public CharSequence getPageTitle(int position) {
 
         Drawable image = context.getResources().getDrawable(tabIcons[position]);
-        image.setAlpha(50);
+
+        image.setAlpha(125);
         image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
         //image.setBounds(image.getIntrinsicWidth(), image.getIntrinsicHeight(), 0, 1);
         SpannableString sb = new SpannableString(" ");

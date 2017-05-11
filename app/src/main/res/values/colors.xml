@@ -6,12 +6,19 @@
     <color name="colorTab">#ffebee</color>
     <color name="colorRecyclerViewBackground">#fafafa</color>
     <color name="white">#ffffff</color>
-    <color name="lightPink">#F4A6CE</color>
+    <color name="lightPink">#EDEDED</color>
     <color name="textColor">#ffffff</color>
 
     <!-- colors for categories -->
-    <color name="colorComputer">#e91e63</color>
-    <color name="colorStudies">#9c27b0</color>
-    <color name="colorCooking">#673ab7</color>
-    <color name="colorOther">#3f51b5</color>
+    <color name="colorComputerStart">#607D8B</color>
+    <color name="colorComputerEnd">#91B6C5</color>
+    <color name="colorStudiesStart">#61CCE4</color>
+    <color name="colorStudiesEnd">#625FF1</color>
+    <color name="colorCookingStart">#42E695</color>
+    <color name="colorCookingEnd">#247074</color>
+    <color name="colorOtherStart">#F9CF81</color>
+    <color name="colorOtherEnd">#F38181</color>
+    <color name="colorHandiworkStart">#F93977</color>
+    <color name="colorHandiworkEnd">#D865CA</color>
+
 </resources>
