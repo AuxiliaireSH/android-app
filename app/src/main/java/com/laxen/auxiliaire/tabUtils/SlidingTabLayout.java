@@ -2,6 +2,7 @@ package com.laxen.auxiliaire.tabUtils;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.annotation.UiThread;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
@@ -17,6 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.laxen.auxiliaire.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -35,6 +39,11 @@ import com.laxen.auxiliaire.R;
  * providing the layout ID of your custom layout.
  */
 public class SlidingTabLayout extends HorizontalScrollView {
+
+    public interface TabListener {
+        void onTabChanged(int position);
+    }
+
     /**
      * Allows complete control over the colors drawn in the tab layout. Set with
      * {@link #setCustomTabColorizer(TabColorizer)}.
@@ -64,6 +73,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     private final SlidingTabStrip mTabStrip;
 
+    private List<TabListener> listeners = new ArrayList<>();
+
     public SlidingTabLayout(Context context) {
         this(context, null);
     }
@@ -84,6 +95,10 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
         mTabStrip = new SlidingTabStrip(context);
         addView(mTabStrip, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+    }
+
+    public void addTabListener(TabListener tabListener) {
+        listeners.add(tabListener);
     }
 
     /**
@@ -252,6 +267,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private class InternalViewPagerListener implements ViewPager.OnPageChangeListener {
         private int mScrollState;
 
+        @UiThread
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             int tabStripChildCount = mTabStrip.getChildCount();
@@ -267,6 +283,11 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             View selectedTitle = mTabStrip.getChildAt(position);
             selectedTitle.setAlpha(1f);
+
+            // informs listeners that tab has changed
+            for(TabListener tabListener : listeners) {
+                tabListener.onTabChanged(position);
+            }
 
             int extraOffset = (selectedTitle != null)
                     ? (int) (positionOffset * selectedTitle.getWidth())

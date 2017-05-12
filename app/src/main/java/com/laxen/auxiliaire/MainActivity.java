@@ -6,6 +6,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.FragmentTransaction;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.support.annotation.UiThread;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -38,6 +40,8 @@ import com.laxen.auxiliaire.tabUtils.SlidingTabLayout;
 import com.laxen.auxiliaire.tabUtils.ViewPagerAdapter;
 import com.laxen.auxiliaire.tabs.MapFragmentTab;
 
+import org.w3c.dom.Text;
+
 import java.util.Arrays;
 import java.util.Date;
 
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback,
         GoogleMap.OnMyLocationButtonClickListener,
         ActivityCompat.OnRequestPermissionsResultCallback,
-        MapFragmentTab.MapFragmentListener{
+        MapFragmentTab.MapFragmentListener, SlidingTabLayout.TabListener {
 
 
     // google maps stuff
@@ -59,7 +63,8 @@ public class MainActivity extends AppCompatActivity
     public JobFragment jobFragment;
     public AddFragment addFragment;
 
-    private TextView addText;
+    private RelativeLayout addText;
+    private TextView titleText;
     private Job currentJob;
 
     public Boolean isLAXEN = false;
@@ -89,8 +94,9 @@ public class MainActivity extends AppCompatActivity
         jobsModel = new JobsModel();
         jobFragment = new JobFragment();
 
+        titleText = (TextView) findViewById(R.id.title_text);
 
-        addText = (TextView) findViewById(R.id.adder_button);
+        addText = (RelativeLayout) findViewById(R.id.adder_button);
         addText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,6 +144,8 @@ public class MainActivity extends AppCompatActivity
         tabs.setSelectedIndicatorColors(getResources().getColor(transparent));
 
         tabs.setVisibility(View.VISIBLE);
+
+        tabs.addTabListener(this);
     }
 
     public void onMapFragmentCreated() {
@@ -288,4 +296,22 @@ public class MainActivity extends AppCompatActivity
         return currentJob;
     }
 
+    @Override
+    @UiThread
+    public void onTabChanged(int position) {
+        switch (position) {
+            case 0:
+                titleText.setText("All posts");
+                return;
+            case 1:
+                titleText.setText("All posts");
+                return;
+            case 2:
+                titleText.setText("My posts");
+                return;
+            case 3:
+                titleText.setText("My profile");
+                return;
+        }
+    }
 }

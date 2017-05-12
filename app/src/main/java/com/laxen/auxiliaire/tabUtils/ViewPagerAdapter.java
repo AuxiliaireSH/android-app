@@ -102,7 +102,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter{
         }
     }
 
-    public int[] tabIcons = {R.drawable.ic_list_black_24dp, R.drawable.ic_settings_black_24dp,
+    public int[] tabIcons = {R.drawable.ic_list_black_24dp, R.drawable.ic_map_black_24dp,
                                 R.drawable.ic_assignment_late_black_24dp, R.drawable.ic_account_circle_black_24dp};
 
     @Override

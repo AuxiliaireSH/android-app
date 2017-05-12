@@ -13,22 +13,29 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_horizontal_margin"
             android:id="@+id/title_area"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_height="75dp">
 
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:clickable="true"
-                android:onClick="exitView"
-                android:src="?android:attr/homeAsUpIndicator"
+            <RelativeLayout
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:id="@+id/back_button"
                 android:layout_centerVertical="true"
-                android:id="@+id/back_button" />
+                android:layout_alignParentStart="true">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:clickable="true"
+                    android:onClick="exitView"
+                    android:layout_centerHorizontal="true"
+                    android:src="?android:attr/homeAsUpIndicator"
+                    android:layout_centerVertical="true" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -36,7 +43,6 @@
                 android:layout_toEndOf="@+id/back_button"
                 android:textSize="24dp"
                 android:textStyle="bold"
-                android:layout_marginLeft="8dp"
                 android:textColor="@color/white"
                 android:text="New post"
                 android:id="@+id/title_text"
