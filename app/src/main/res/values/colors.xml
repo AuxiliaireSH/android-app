@@ -8,6 +8,8 @@
     <color name="white">#ffffff</color>
     <color name="lightPink">#EDEDED</color>
     <color name="textColor">#ffffff</color>
+    <color name="darkText">#000000</color>
+    <color name="grayText">#747474</color>
 
     <!-- colors for categories -->
     <color name="colorComputerStart">#607D8B</color>

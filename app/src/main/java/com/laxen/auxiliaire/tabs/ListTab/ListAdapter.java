@@ -66,7 +66,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                                                    int viewType) {
         // create a new views
         View v = LayoutInflater.from(parent.getContext())
-                               .inflate(R.layout.list_card, parent, false);
+                               .inflate(R.layout.list_card_new, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
