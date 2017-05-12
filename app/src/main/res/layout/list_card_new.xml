@@ -29,7 +29,7 @@
                 android:layout_height="match_parent">
 
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:src="@drawable/ic_cast_dark"
+                    android:src="@drawable/ic_computer_white_24dp"
                     android:id="@+id/card_icon"
                     android:scaleType="fitXY"
                     android:layout_centerHorizontal="true"
@@ -69,7 +69,7 @@
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:layout_gravity="center"
-                            android:tint="@color/colorPrimary"
+                            android:tint="@color/colorHandiworkStart"
                             android:src="@drawable/ic_monetization_on_black_24dp"/>
 
                         <TextView
@@ -128,9 +128,10 @@
                             android:layout_centerVertical="true"
                             android:layout_alignParentEnd="true"
                             android:id="@+id/acceptJobButton"
-                            android:textColor="@color/colorPrimary"
-                            android:text="Accept job"
-                            android:textSize="18sp" />
+                            android:textColor="@color/colorHandiworkStart"
+                            android:text="ACCEPT"
+                            android:textStyle="bold"
+                            android:textSize="14sp" />
 
                     </RelativeLayout>
 
