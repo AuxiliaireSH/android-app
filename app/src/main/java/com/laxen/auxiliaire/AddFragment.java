@@ -44,18 +44,13 @@ public class AddFragment extends Fragment {
 
     private View background;
 
-    private Drawable currentBackground;
     private Button addButton;
-    private ImageButton exitButton;
-    private Integer userID;
     private EditText nameEdit;
     private Spinner categories;
-    private ExpandableListAdapter listAdapter;
     private EditText titleEdit;
     private EditText priceEdit;
 
     private TextView descText;
-    private TextView positionText;
 
 
     final int[] startColors = {   R.color.colorHandiworkStart, R.color.colorComputerStart,

@@ -22,14 +22,22 @@
             android:layout_height="wrap_content"
             android:background="@color/cardview_light_background">
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+            <RelativeLayout
                 android:id="@+id/cardBackground"
-                android:scaleType="fitXY"
                 android:background="@drawable/background_gradient_blue"
                 android:layout_width="100dp"
-                android:layout_height="match_parent"
-                app:riv_tile_mode="repeat" />
+                android:layout_height="match_parent">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:src="@drawable/ic_cast_dark"
+                    android:id="@+id/card_icon"
+                    android:scaleType="fitXY"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"/>
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:orientation="vertical"

@@ -27,8 +27,6 @@ public class ListFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private FloatingActionButton fab;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,14 +42,6 @@ public class ListFragment extends Fragment {
             public void onRefresh() {
                 ((MainActivity)getContext()).fetchData(); // fetching from server
                 mSwipeRefreshLayout.setRefreshing(false);
-            }
-        });
-
-        fab = (FloatingActionButton) view.findViewById(R.id.fabButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // todo switch to map view
             }
         });
 
