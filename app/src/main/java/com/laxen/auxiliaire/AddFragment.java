@@ -166,7 +166,7 @@ public class AddFragment extends Fragment {
         Log.d("test", "updating color");
 
         GradientDrawable gd = new GradientDrawable(
-                GradientDrawable.Orientation.TOP_BOTTOM,
+                GradientDrawable.Orientation.TR_BL,
                 new int[] {getResources().getColor(colorStart), getResources().getColor(colorEnd)});
 
         Drawable[] grads = {background.getBackground(), gd};

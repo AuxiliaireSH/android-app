@@ -14,13 +14,13 @@
     <!-- colors for categories -->
     <color name="colorComputerStart">#607D8B</color>
     <color name="colorComputerEnd">#91B6C5</color>
-    <color name="colorStudiesStart">#61CCE4</color>
-    <color name="colorStudiesEnd">#625FF1</color>
-    <color name="colorCookingStart">#42E695</color>
+    <color name="colorStudiesStart">#7F7CFF</color>
+    <color name="colorStudiesEnd">#8BD9FF</color>
+    <color name="colorCookingStart">#23A793</color>
     <color name="colorCookingEnd">#247074</color>
-    <color name="colorOtherStart">#F9CF81</color>
-    <color name="colorOtherEnd">#F38181</color>
-    <color name="colorHandiworkStart">#F93977</color>
-    <color name="colorHandiworkEnd">#D865CA</color>
+    <color name="colorOtherStart">#F38181</color>
+    <color name="colorOtherEnd">#F9CF81</color>
+    <color name="colorHandiworkStart">#F54EA2</color>
+    <color name="colorHandiworkEnd">#FFD4EA</color>
 
 </resources>
