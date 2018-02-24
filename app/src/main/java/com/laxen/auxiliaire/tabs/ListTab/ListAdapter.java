@@ -1,11 +1,7 @@
 package com.laxen.auxiliaire.tabs.ListTab;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.TransitionDrawable;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -16,21 +12,27 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.laxen.auxiliaire.JobFragment;
-import com.laxen.auxiliaire.MainActivity;
 import com.laxen.auxiliaire.models.Job;
 import com.laxen.auxiliaire.R;
 
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.StringTokenizer;
 
 /**
  * Created by rawa on 2016-05-14.
  */
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
+
+    public void setListener(ListAdapterListener listener) {
+        this.listener = listener;
+    }
+
+    public interface ListAdapterListener {
+        void onJobClicked(Job job);
+    }
+
+    private ListAdapterListener listener;
 
     private List<Job> mJobset;
     protected Context context;
@@ -114,17 +116,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity mainActivity = (MainActivity) context;
-                mainActivity.popFragment();
-
-                mainActivity.setCurrentJob(job);
-                mainActivity.jobFragment = new JobFragment();
-
-                FragmentTransaction transaction;
-                transaction = mainActivity.getSupportFragmentManager().beginTransaction();
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                transaction.add(R.id.fragmentcontainer, mainActivity.jobFragment).addToBackStack("jobFrag");
-                transaction.commit();
+                listener.onJobClicked(job);
             }
         });
 

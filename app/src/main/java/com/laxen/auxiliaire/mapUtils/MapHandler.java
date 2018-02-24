@@ -81,7 +81,9 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
     @Override
     public boolean onMarkerClick(Marker marker) {
 
-        Job job = new Job();
+        // TODO call listener in MainActivity
+
+        /*Job job = new Job();
         job.setUsername(markerJobMap.get(marker).getUsername());
         job.setTitle(markerJobMap.get(marker).getTitle());
         job.setKind(markerJobMap.get(marker).getKind());
@@ -91,13 +93,12 @@ public class MapHandler implements GoogleMap.OnMapClickListener, GoogleMap.OnMap
         mainActivity.popFragment();
 
         mainActivity.setCurrentJob(job);
-        mainActivity.jobFragment = new JobFragment();
 
         FragmentTransaction transaction;
         transaction = mainActivity.getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        transaction.add(R.id.fragmentcontainer, mainActivity.jobFragment).addToBackStack("jobFrag");
-        transaction.commit();
+        transaction.add(R.id.content, mainActivity.jobFragment).addToBackStack("jobFrag");
+        transaction.commit();*/
 
 
         //context.getSupportActionBar().hide();

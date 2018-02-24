@@ -2,18 +2,14 @@ package com.laxen.auxiliaire.tabs.ListTab;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.laxen.auxiliaire.AddFragment;
 import com.laxen.auxiliaire.MainActivity;
 import com.laxen.auxiliaire.R;
 import com.laxen.auxiliaire.models.JobsModel;
@@ -26,6 +22,7 @@ public class ListFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private ListAdapter.ListAdapterListener adapterListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +53,7 @@ public class ListFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new ListAdapter(new JobsModel().getJobs(), getContext());
+        ((ListAdapter)mAdapter).setListener(adapterListener);
         mRecyclerView.setAdapter(mAdapter);
 
         return view;
@@ -69,5 +67,9 @@ public class ListFragment extends Fragment {
         mAdapter = new ListAdapter(jobsModel.getJobs(), getContext());
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+    }
+
+    public void setAdapterListener(ListAdapter.ListAdapterListener adapterListener) {
+        this.adapterListener = adapterListener;
     }
 }

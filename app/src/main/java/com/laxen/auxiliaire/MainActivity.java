@@ -1,57 +1,48 @@
 package com.laxen.auxiliaire;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.FragmentTransaction;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.support.annotation.UiThread;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.transition.Transition;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewAnimationUtils;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.laxen.auxiliaire.mapUtils.MapHandler;
 import com.laxen.auxiliaire.models.Job;
 import com.laxen.auxiliaire.models.JobsModel;
-import com.laxen.auxiliaire.tabUtils.SlidingTabLayout;
-import com.laxen.auxiliaire.tabUtils.ViewPagerAdapter;
+import com.laxen.auxiliaire.tabs.JobsFragment;
+import com.laxen.auxiliaire.tabs.ListTab.ListAdapter;
+import com.laxen.auxiliaire.tabs.ListTab.ListFragment;
 import com.laxen.auxiliaire.tabs.MapFragmentTab;
 
-import org.w3c.dom.Text;
-
 import java.util.Arrays;
-import java.util.Date;
-
-import static android.R.color.transparent;
 
 public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback,
         GoogleMap.OnMyLocationButtonClickListener,
-        ActivityCompat.OnRequestPermissionsResultCallback,
-        MapFragmentTab.MapFragmentListener, SlidingTabLayout.TabListener {
+        ActivityCompat.OnRequestPermissionsResultCallback, ListAdapter.ListAdapterListener {
+
+    static final int ADD_JOB_REQUEST = 1337;
 
 
     // google maps stuff
@@ -60,14 +51,45 @@ public class MainActivity extends AppCompatActivity
 
     private MapHandler mapHandler;
     private JobsModel jobsModel;
-    public JobFragment jobFragment;
-    public AddFragment addFragment;
+    //public AddActivity addFragment;
+
+    // fragments
+    private ListFragment listFragment;
+    private MapFragmentTab mapFragment;
+    private JobsFragment jobsFragment;
+    private UserFragment profileFragment;
 
     private RelativeLayout addText;
     private TextView titleText;
     private Job currentJob;
 
     public Boolean isLAXEN = false;
+
+    private String idFragment = "ListFragment";
+
+    private BottomNavigationView navigation;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_list:
+                    idFragment = "ListFragment";
+                    switchContent("ListFragment");
+                    return true;
+                case R.id.navigation_map:
+                    idFragment = "MapFragmentTab";
+                    switchContent("MapFragmentTab");
+                    return true;
+                case R.id.navigation_profile:
+                    idFragment = "ProfileFragment";
+                    switchContent("ProfileFragment");
+                    return true;
+            }
+
+            return false;
+        }
+    };
 
 
     public void setCurrentJob(Job job) {
@@ -76,15 +98,14 @@ public class MainActivity extends AppCompatActivity
 
     private final String url = "http://10.0.2.2:3000/jobs";
 
-    ViewPagerAdapter adapter;
-    SlidingTabLayout tabs;
-    ViewPager pager;
-    String tabNames[] = {"List", "Map", "My JobsModel", "Profile"};
-    MapFragment mMapFragment;
+    //ViewPagerAdapter adapter;
+    //SlidingTabLayout tabs;
+    //ViewPager pager;
+    //MapFragment mMapFragment;
 
-    public SlidingTabLayout getTabs () {
+    /*public SlidingTabLayout getTabs () {
         return tabs;
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +113,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         jobsModel = new JobsModel();
-        jobFragment = new JobFragment();
 
         titleText = (TextView) findViewById(R.id.title_text);
 
@@ -100,25 +120,67 @@ public class MainActivity extends AppCompatActivity
         addText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addFragment = new AddFragment();
 
-                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Intent addIntent = new Intent(MainActivity.this, AddActivity.class);
+                startActivityForResult(addIntent, ADD_JOB_REQUEST);
+
+
+                /*android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                transaction.add(R.id.fragmentcontainer, addFragment).addToBackStack("jobFrag");
-                transaction.commit();
+                transaction.add(R.id.content, addActivity).addToBackStack("jobFrag");
+                transaction.commit();*/
             }
         });
 
-        initToolBar();
+        idFragment = "ListFragment";
+        createFragments();
+
+
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.content, listFragment).commit();
+
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        //Toolbar toolBar = (Toolbar)findViewById(R.id.home_toolbar);
+        //setSupportActionBar(toolBar);
+        //initToolBar();
+
 
     }
 
-    public void exitView(View v) {
-        popFragment();
+    public void createFragments() {
+        listFragment = new ListFragment();
+        listFragment.setJobsModel(jobsModel);
+        listFragment.setAdapterListener(this);
+
+        jobsFragment = new JobsFragment();
+        profileFragment = new UserFragment();
+
+        mapFragment = new MapFragmentTab();
+
+        /*mMapFragment = MapFragment.newInstance();
+        mMapFragment.getMapAsync(this);*/
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == ADD_JOB_REQUEST) {
+            if(resultCode == Activity.RESULT_OK) {
+                Toast.makeText(this, "All good in the hood", Toast.LENGTH_SHORT).show();
+                String result = data.getStringExtra("result");
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
 
     // inits the toolbar, actionbar and tabs
-    public void initToolBar() {
+    /*public void initToolBar() {
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager(), tabNames, 4, jobsModel);
         adapter.setContext(this);
@@ -130,10 +192,46 @@ public class MainActivity extends AppCompatActivity
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
 
-        initSlider();
+    }*/
+
+    private void switchContent(String content){
+
+        Fragment fragment;
+        String title;
+
+        switch (content){
+            case "ListFragment":
+                fragment = jobsFragment;
+                title = "All jobs";
+                break;
+            case "MapFragmentTab":
+                fragment = mapFragment;
+                title = "All jobs";
+                break;
+            case "JobsFragment":
+                fragment = jobsFragment;
+                title = "Your jobs";
+                break;
+            case "ProfileFragment":
+                fragment = profileFragment;
+                title = "Your profile";
+                break;
+            default:
+                fragment = jobsFragment;
+                title = "All jobs";
+                break;
+        }
+
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.content, fragment).addToBackStack(content).commit();
+        //getSupportActionBar().setTitle(title);
+        titleText.setText(title);
     }
 
-    public void initSlider() {
+    /*public void initSlider() {
+
+
+
         // tabs for list and map
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
         tabs.setCustomTabView(R.layout.custom_tab, 0);
@@ -146,9 +244,9 @@ public class MainActivity extends AppCompatActivity
         tabs.setVisibility(View.VISIBLE);
 
         tabs.addTabListener(this);
-    }
+    }*/
 
-    public void onMapFragmentCreated() {
+    /*public void onMapFragmentCreated() {
 
         mMapFragment = MapFragment.newInstance();
 
@@ -159,7 +257,7 @@ public class MainActivity extends AppCompatActivity
 
         mMapFragment.getMapAsync(this);
 
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -279,7 +377,7 @@ public class MainActivity extends AppCompatActivity
             mapHandler.populateMap();
         }
 
-        adapter.getListFragment().populuateList();
+        listFragment.populuateList();
     }
 
     public void createMap() {
@@ -297,21 +395,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    @UiThread
-    public void onTabChanged(int position) {
-        switch (position) {
-            case 0:
-                titleText.setText("All posts");
-                return;
-            case 1:
-                titleText.setText("All posts");
-                return;
-            case 2:
-                titleText.setText("My posts");
-                return;
-            case 3:
-                titleText.setText("My profile");
-                return;
-        }
+    public void onJobClicked(Job job) {
+        popFragment();
+        currentJob = job;
+        setCurrentJob(job);
+
+        JobFragment jobFragment = new JobFragment();
+
+        android.support.v4.app.FragmentTransaction transaction;
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.add(R.id.content, jobFragment).addToBackStack("jobFrag");
+        transaction.commit();
     }
 }

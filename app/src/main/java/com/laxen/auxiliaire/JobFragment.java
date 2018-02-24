@@ -81,8 +81,8 @@ public class JobFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         // Todo accept job
+        // TODO call listener in MainActivity instead
         ((MainActivity) getContext()).popFragment();
-        ((MainActivity) getContext()).initToolBar();
         Toast msg = Toast.makeText(getContext(), "Job accepted!", Toast.LENGTH_SHORT);
         msg.show();
     }

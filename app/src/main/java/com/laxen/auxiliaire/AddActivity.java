@@ -1,50 +1,30 @@
 package com.laxen.auxiliaire;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.support.annotation.UiThread;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewAnimationUtils;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ExpandableListAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.laxen.auxiliaire.models.Job;
-
-import org.json.JSONObject;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by laxen on 5/14/16.
  */
-public class AddFragment extends Fragment {
+public class AddActivity extends Activity {
 
     private View background;
 
     private Button addButton;
+    private ImageView backButton;
     private EditText nameEdit;
     private Spinner categories;
     private EditText titleEdit;
@@ -59,27 +39,27 @@ public class AddFragment extends Fragment {
     final int[] endColors = {   R.color.colorHandiworkEnd, R.color.colorComputerEnd,
             R.color.colorStudiesEnd, R.color.colorCookingEnd, R.color.colorOtherEnd};
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add);
 
-        initUI(view);
-
-        return view;
+        initUI();
     }
 
-    public void initUI(View view) {
+    public void initUI() {
 
-        background = view.findViewById(R.id.add_background);
+        background = findViewById(R.id.add_background);
+        backButton = (ImageView) findViewById(R.id.back_button);
+        addButton = (Button) findViewById(R.id.addBtn);
+        nameEdit = (EditText) findViewById(R.id.nameEdit);
+        titleEdit = (EditText) findViewById(R.id.titleEdit);
+        priceEdit = (EditText) findViewById(R.id.priceEdit);
+        descText = (EditText) findViewById(R.id.descEdit);
+        categories = (Spinner) findViewById(R.id.categories);
 
-        addButton = (Button) view.findViewById(R.id.addBtn);
-        nameEdit = (EditText) view.findViewById(R.id.nameEdit);
-        titleEdit = (EditText) view.findViewById(R.id.titleEdit);
-        priceEdit = (EditText) view.findViewById(R.id.priceEdit);
-        descText = (EditText) view.findViewById(R.id.descEdit);
-        categories = (Spinner) view.findViewById(R.id.categories);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.categories_array, R.layout.cat_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -102,10 +82,34 @@ public class AddFragment extends Fragment {
             }
         });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                setResult(Activity.RESULT_CANCELED, null);
+                finish();
+            }
+        });
 
 
+
+        // TODO send result back
 
         addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result", 123);
+
+                setResult(Activity.RESULT_OK, returnIntent);
+                finish();
+            }
+        });
+
+
+        /*addButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Job job = new Job(0,
@@ -157,13 +161,11 @@ public class AddFragment extends Fragment {
                         });
                 VolleyHelper.getInstance(getContext()).addToRequestQueue(gsonRequest);
             }
-        });
+        });*/
     }
 
     @UiThread
     public void updateBackgroundColor(int colorStart, int colorEnd) {
-
-        Log.d("test", "updating color");
 
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TR_BL,
@@ -175,11 +177,6 @@ public class AddFragment extends Fragment {
         background.setBackgroundDrawable(transitionDrawable);
         transitionDrawable.startTransition(500);
 
-
-        //background.setBackgroundColor(getResources().getColor(R.color.colorComputer));
-
-
-        Log.d("test", "background: " + background.getBackground());
 
     }
 
