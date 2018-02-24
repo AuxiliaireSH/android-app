@@ -1,8 +1,9 @@
 package com.laxen.auxiliaire.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Job {
+public class Job implements Serializable{
 
 	private Integer userid;
 	private String username;

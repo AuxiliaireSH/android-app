@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.laxen.auxiliaire.tabs.ListTab.ListAdapter;
 import com.laxen.auxiliaire.tabs.ListTab.ListFragment;
 import com.laxen.auxiliaire.tabs.MapFragmentTab;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity
@@ -170,7 +172,50 @@ public class MainActivity extends AppCompatActivity
         if (requestCode == ADD_JOB_REQUEST) {
             if(resultCode == Activity.RESULT_OK) {
                 Toast.makeText(this, "All good in the hood", Toast.LENGTH_SHORT).show();
-                String result = data.getStringExtra("result");
+
+                Job jobResult = (Job) data.getSerializableExtra("jobresult");
+
+                Log.d("MainActivity", "got this");
+                Log.d("MainActivity", jobResult.getTitle());
+
+                /*((MainActivity)getContext()).getJobsModel().getMyJobs().add(job);
+
+                ((MainActivity)getContext()).getJobsModel().getJobs().add(job);
+
+                // ((MainActivity)getContext()).fetchData(); TODO use this instead
+                ((MainActivity)getContext()).refreshJobs();
+                ((MainActivity)getContext()).popFragment();
+
+                String url = "http://10.0.2.2:3000/jobs";
+
+                Map<String, String> jobMap = new HashMap<String, String>();
+                jobMap.put("title", job.getTitle());
+                jobMap.put("description", job.getDescription());
+                jobMap.put("price", job.getPrice().toString());
+                jobMap.put("kind", job.getKind());
+                jobMap.put("latitude", job.getLatitude().toString());
+                jobMap.put("longitude", job.getLongitude().toString());
+                jobMap.put("user_id", "1"); //TODO add user here
+
+
+                GsonRequest gsonRequest = new GsonRequest(Request.Method.POST, url, Job[].class, null,
+                        jobMap, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Add toast here
+                    }
+                },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // Add toast here
+                                if (null != error.networkResponse) {
+                                    Log.d("e13" + ": ", "Error Response code: " + error.networkResponse.statusCode);
+                                }
+                            }
+                        });
+                VolleyHelper.getInstance(getContext()).addToRequestQueue(gsonRequest);*/
+
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
